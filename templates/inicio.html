@@ -1,0 +1,357 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>de ÜTSÜIN MMA | Clasificación Inteligente</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            <div class="logo-symbol">
+    <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo ÜTSÜIN MMA">
+</div>
+
+            <div>
+                <span class="logo-name">de ÜTSÜIN MMA</span>
+                <small>Clasificación inteligente</small>
+            </div>
+        </div>
+
+        <nav>
+            <a href="/" class="active">Inicio</a>
+            <a href="/materiales">Materiales</a>
+            <a href="/deteccion">Detección IA</a>
+        </nav>
+
+        <div class="status">
+            <span class="status-dot"></span>
+            Sistema activo
+        </div>
+
+    </header>
+
+
+    <!-- ================= DECORACIÓN ================= -->
+
+    <div class="pattern-top"></div>
+
+
+    <!-- ================= HERO ================= -->
+
+    <main>
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <div class="tag">
+                    <span>✦</span>
+                    TECNOLOGÍA · AMBIENTE · TERRITORIO
+                </div>
+
+                <h1>
+                    Transformando residuos
+                    <span>en oportunidades.</span>
+                </h1>
+
+                <p>
+                    de ÜTSÜIN MMA es un sistema inteligente diseñado para
+                    identificar y clasificar materiales reciclables mediante
+                    visión artificial y automatización.
+                </p>
+
+                <div class="hero-buttons">
+                    <a href="/deteccion" class="btn-primary">
+                        Iniciar detección
+                        <span>→</span>
+                    </a>
+
+                    <a href="/materiales" class="btn-secondary">
+                        Ver materiales
+                    </a>
+                </div>
+
+            </div>
+
+
+            <!-- PANEL VISUAL -->
+
+            <div class="hero-visual">
+
+                <div class="visual-circle circle-one"></div>
+                <div class="visual-circle circle-two"></div>
+
+                <div class="tech-card">
+
+                    <div class="camera-icon">
+                        📷
+                    </div>
+
+                    <div class="scan-line"></div>
+
+                    <div class="detected-box">
+
+                        <span class="corner top-left"></span>
+                        <span class="corner top-right"></span>
+                        <span class="corner bottom-left"></span>
+                        <span class="corner bottom-right"></span>
+
+                        <div class="detected-label">
+                            MATERIAL DETECTADO
+                        </div>
+
+                        <strong>PET</strong>
+
+                        <small>Botella plástica</small>
+
+                    </div>
+
+                    <div class="confidence">
+                        <span>Confianza</span>
+                        <strong>94.7%</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= IDENTIDAD ================= -->
+
+        <section class="identity">
+
+            <div class="section-title">
+
+                <span class="eyebrow">
+                    NUESTRA IDENTIDAD
+                </span>
+
+                <h2>
+                    Tecnología con raíces
+                </h2>
+
+                <p>
+                    Una propuesta que combina innovación, sostenibilidad
+                    y la identidad cultural del Caribe colombiano.
+                </p>
+
+            </div>
+
+
+            <div class="identity-grid">
+
+                <article class="identity-card cultural">
+
+                    <div class="card-number">01</div>
+
+                    <div class="card-icon">◈</div>
+
+                    <h3>Identidad cultural</h3>
+
+                    <p>
+                        Inspirado en los patrones, formas y riqueza cultural
+                        de las comunidades afrocolombianas y del Caribe.
+                    </p>
+
+                </article>
+
+
+                <article class="identity-card ecological">
+
+                    <div class="card-number">02</div>
+
+                    <div class="card-icon">♻</div>
+
+                    <h3>Sostenibilidad</h3>
+
+                    <p>
+                        Facilitamos la separación de residuos para promover
+                        hábitos responsables con nuestro entorno.
+                    </p>
+
+                </article>
+
+
+                <article class="identity-card technology">
+
+                    <div class="card-number">03</div>
+
+                    <div class="card-icon">⌁</div>
+
+                    <h3>Inteligencia artificial</h3>
+
+                    <p>
+                        Utilizamos visión artificial para identificar
+                        materiales automáticamente.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= FUNCIONAMIENTO ================= -->
+
+        <section class="how-section">
+
+            <div class="section-title">
+
+                <span class="eyebrow">
+                    ¿CÓMO FUNCIONA?
+                </span>
+
+                <h2>
+                    Del objeto a la clasificación
+                </h2>
+
+            </div>
+
+
+            <div class="steps">
+
+                <div class="step">
+
+                    <div class="step-number">01</div>
+
+                    <div>
+                        <h3>Captura</h3>
+
+                        <p>
+                            La ESP32-CAM obtiene una imagen del objeto
+                            sobre la banda transportadora.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="step-line"></div>
+
+
+                <div class="step">
+
+                    <div class="step-number">02</div>
+
+                    <div>
+                        <h3>Identificación</h3>
+
+                        <p>
+                            El modelo de inteligencia artificial analiza
+                            la imagen y reconoce el material.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="step-line"></div>
+
+
+                <div class="step">
+
+                    <div class="step-number">03</div>
+
+                    <div>
+                        <h3>Clasificación</h3>
+
+                        <p>
+                            El ESP32 controla los mecanismos que dirigen
+                            el material hacia su respectivo contenedor.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= INFORMACIÓN EMPRESA ================= -->
+
+        <section class="company-section">
+
+            <div class="company-info">
+
+                <span class="eyebrow">
+                    de ÜTSÜIN MMA
+                </span>
+
+                <h2>
+                    Soluciones inteligentes
+                    para un futuro sostenible.
+                </h2>
+
+                <p>
+                    Sistema automatizado de identificación y clasificación
+                    de materiales reciclables.
+                </p>
+
+            </div>
+
+
+            <div class="company-data">
+
+                <div>
+                    <span>NIT</span>
+                    <strong>900.123.456-7</strong>
+                </div>
+
+                <div>
+                    <span>UBICACIÓN</span>
+                    <strong>Riohacha, La Guajira</strong>
+                </div>
+
+                <div>
+                    <span>SERVICIO</span>
+                    <strong>Clasificación automatizada</strong>
+                </div>
+
+                <div>
+                    <span>CONTACTO</span>
+                    <strong>+57 300 123 4567</strong>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="footer-logo">
+    <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo ÜTSÜIN MMA">
+</div>
+        </div>
+
+        <p>
+            Tecnología · Cultura · Sostenibilidad
+        </p>
+
+        <span class="copyright">
+            © 2026 de ÜTSÜIN MMA
+        </span>
+
+    </footer>
+
+</body>
+</html>
+

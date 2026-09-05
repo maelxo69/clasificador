@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>de ÜTSÜIN MMA | Materiales</title>
+
+    <!-- CSS GENERAL -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <!-- CSS DE MATERIALES -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/materiales.css') }}">
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         NAVBAR
+         ===================================================== -->
+
+    <header class="navbar">
+
+        <div class="logo">
+
+          <div class="logo-symbol">
+    <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo ÜTSÜIN MMA">
+</div>
+
+            <div>
+
+                <span class="logo-name">
+                    de ÜTSÜIN MMA
+                </span>
+
+                <small>
+                    Clasificación inteligente
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <nav>
+
+            <a href="/">
+                Inicio
+            </a>
+
+            <a href="/materiales" class="active">
+                Materiales
+            </a>
+
+            <a href="/deteccion">
+                Detección IA
+            </a>
+
+        </nav>
+
+
+        <div class="status">
+
+            <span class="status-dot"></span>
+
+            Sistema activo
+
+        </div>
+
+    </header>
+
+
+    <!-- PATRÓN DECORATIVO -->
+
+    <div class="pattern-top"></div>
+
+
+
+    <!-- =====================================================
+         CONTENIDO PRINCIPAL
+         ===================================================== -->
+
+    <main>
+
+
+        <!-- =================================================
+             ENCABEZADO
+             ================================================= -->
+
+        <section class="materials-header">
+
+            <span class="eyebrow">
+                MATERIALES CLASIFICADOS
+            </span>
+
+            <h1>
+                Conoce los materiales
+            </h1>
+
+            <p>
+                de ÜTSÜIN MMA identifica diferentes tipos de materiales
+                plásticos mediante visión artificial para facilitar
+                su separación, clasificación y aprovechamiento.
+            </p>
+
+        </section>
+
+
+
+        <!-- =================================================
+             CARRUSEL
+             ================================================= -->
+
+        <section class="material-carousel">
+
+
+            <!-- BOTÓN ANTERIOR -->
+
+            <button
+                class="carousel-btn prev"
+                onclick="changeMaterial(-1)"
+                aria-label="Material anterior">
+
+                ←
+
+            </button>
+
+
+
+            <!-- =================================================
+                 CONTENEDOR DEL MATERIAL
+                 ================================================= -->
+
+            <div class="material-slide">
+
+
+                <!-- =============================================
+                     GALERÍA DE FOTOS
+                     ============================================= -->
+
+                <div class="material-gallery">
+
+
+                    <!-- FOTO PRINCIPAL -->
+
+                    <div class="main-photo">
+
+                        <img
+                            id="material-image"
+                            src="{{ url_for('static', filename='img/materiales/ldpe/ldpe-1.jpg') }}"
+                            alt="LDPE">
+
+
+                        <div
+                            class="photo-label"
+                            id="photo-label">
+
+                            LDPE
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- MINIATURAS -->
+
+                    <div
+                        class="photo-thumbnails"
+                        id="photo-thumbnails">
+
+
+                        <button onclick="changePhoto(0)">
+
+                            <img
+                                src="{{ url_for('static', filename='img/materiales/ldpe/ldpe-1.jpg') }}"
+                                alt="LDPE fotografía 1">
+
+                        </button>
+
+
+                        <button onclick="changePhoto(1)">
+
+                            <img
+                                src="{{ url_for('static', filename='img/materiales/ldpe/ldpe-2.jpg') }}"
+                                alt="LDPE fotografía 2">
+
+                        </button>
+
+
+                        <button onclick="changePhoto(2)">
+
+                            <img
+                                src="{{ url_for('static', filename='img/materiales/ldpe/ldpe-3.jpg') }}"
+                                alt="LDPE fotografía 3">
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =============================================
+                     INFORMACIÓN
+                     ============================================= -->
+
+                <div class="material-info">
+
+
+                    <!-- CONTADOR -->
+
+                    <div
+                        class="material-number"
+                        id="material-number">
+
+                        01 / 04
+
+                    </div>
+
+
+
+                    <!-- CÓDIGO -->
+
+                    <div
+                        class="material-code"
+                        id="material-code">
+
+                        ♻ CÓDIGO DE RECICLAJE 04
+
+                    </div>
+
+
+
+                    <!-- NOMBRE -->
+
+                    <h2 id="material-name">
+                        LDPE
+                    </h2>
+
+
+                    <!-- NOMBRE COMPLETO -->
+
+                    <h3 id="material-subtitle">
+                        Polietileno de baja densidad
+                    </h3>
+
+
+
+                    <!-- DESCRIPCIÓN -->
+
+                    <p
+                        class="material-description"
+                        id="material-description">
+
+                        El LDPE es un plástico flexible y ligero,
+                        utilizado principalmente en bolsas,
+                        envolturas y diferentes tipos de empaques.
+                        Su flexibilidad y resistencia a la humedad
+                        lo hacen muy utilizado en productos de uso
+                        cotidiano.
+
+                    </p>
+
+
+
+                    <!-- =========================================
+                         DATOS
+                         ========================================= -->
+
+                    <div class="material-data">
+
+
+                        <div>
+
+                            <span>
+                                NOMBRE
+                            </span>
+
+                            <strong id="data-name">
+                                Polietileno de baja densidad
+                            </strong>
+
+                        </div>
+
+
+
+                        <div>
+
+                            <span>
+                                SÍMBOLO
+                            </span>
+
+                            <strong id="data-code">
+                                ♻ 04
+                            </strong>
+
+                        </div>
+
+
+
+                        <div>
+
+                            <span>
+                                CARACTERÍSTICA
+                            </span>
+
+                            <strong id="data-characteristic">
+                                Flexible
+                            </strong>
+
+                        </div>
+
+
+
+                        <div>
+
+                            <span>
+                                USOS
+                            </span>
+
+                            <strong id="data-uses">
+                                Bolsas y envolturas
+                            </strong>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- =========================================
+                         EJEMPLOS
+                         ========================================= -->
+
+                    <div class="examples">
+
+                        <span>
+                            EJEMPLOS
+                        </span>
+
+                        <p id="data-examples">
+
+                            Bolsas plásticas ·
+                            Film plástico ·
+                            Envolturas ·
+                            Bolsas para alimentos
+
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- BOTÓN SIGUIENTE -->
+
+            <button
+                class="carousel-btn next"
+                onclick="changeMaterial(1)"
+                aria-label="Siguiente material">
+
+                →
+
+            </button>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             INDICADORES
+             ================================================= -->
+
+        <div class="material-indicators">
+
+
+            <button
+                class="indicator active"
+                onclick="showMaterial(0)">
+
+                LDPE
+
+            </button>
+
+
+            <button
+                class="indicator"
+                onclick="showMaterial(1)">
+
+                PVC
+
+            </button>
+
+
+            <button
+                class="indicator"
+                onclick="showMaterial(2)">
+
+                PET
+
+            </button>
+
+
+            <button
+                class="indicator"
+                onclick="showMaterial(3)">
+
+                HDPE / PP
+
+            </button>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             INFORMACIÓN FINAL
+             ================================================= -->
+
+        <section class="classification-info">
+
+
+            <div>
+
+                <span class="eyebrow">
+                    CLASIFICACIÓN
+                </span>
+
+                <h2>
+                    ¿Por qué separar los materiales?
+                </h2>
+
+            </div>
+
+
+            <p>
+
+                Cada tipo de plástico posee propiedades y
+                características diferentes. Identificarlos
+                correctamente permite mejorar la separación
+                de residuos y facilitar su posterior
+                aprovechamiento y reciclaje.
+
+            </p>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
+
+    <footer>
+
+
+        <div class="footer-logo">
+    <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo ÜTSÜIN MMA">
+</div>
+
+
+        <p>
+            Tecnología · Cultura · Sostenibilidad
+        </p>
+
+
+        <span class="copyright">
+            © 2026 de ÜTSÜIN MMA
+        </span>
+
+
+    </footer>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT DEL CARRUSEL
+         ===================================================== -->
+
+    <script>
+
+
+        /*
+         * ====================================================
+         * DATOS DE LOS MATERIALES
+         * ====================================================
+         */
+
+        const materials = [
+
+            {
+
+                name: "LDPE",
+
+                subtitle:
+                    "Polietileno de baja densidad",
+
+                code:
+                    "04",
+
+                description:
+                    "El LDPE es un plástico flexible y ligero, utilizado principalmente en bolsas, envolturas y diferentes tipos de empaques. Su flexibilidad y resistencia a la humedad lo hacen muy utilizado en productos de uso cotidiano.",
+
+                characteristic:
+                    "Flexible",
+
+                uses:
+                    "Bolsas y envolturas",
+
+                examples:
+                    "Bolsas plásticas · Film plástico · Envolturas · Bolsas para alimentos",
+
+                images: [
+
+                    "{{ url_for('static', filename='img/materiales/ldpe/ldpe-1.jpg') }}",
+
+                    "{{ url_for('static', filename='img/materiales/ldpe/ldpe-2.jpg') }}",
+
+                    "{{ url_for('static', filename='img/materiales/ldpe/ldpe-3.jpg') }}"
+
+                ]
+
+            },
+
+
+            {
+
+                name: "PVC",
+
+                subtitle:
+                    "Policloruro de vinilo",
+
+                code:
+                    "03",
+
+                description:
+                    "El PVC es un material plástico resistente y versátil. Se utiliza en diferentes productos y elementos que requieren durabilidad, resistencia y estabilidad.",
+
+                characteristic:
+                    "Resistente",
+
+                uses:
+                    "Tuberías y productos diversos",
+
+                examples:
+                    "Tuberías · Perfiles · Envases · Algunos cables",
+
+                images: [
+
+                    "{{ url_for('static', filename='img/materiales/pvc/pvc-1.jpg') }}",
+
+                    "{{ url_for('static', filename='img/materiales/pvc/pvc-2.jpg') }}",
+
+                    "{{ url_for('static', filename='img/materiales/pvc/pvc-3.jpg') }}"
+
+                ]
+
+            },
+
+
+            {
+
+                name: "PET",
+
+                subtitle:
+                    "Tereftalato de polietileno",
+
+                code:
+                    "01",
+
+                description:
+                    "El PET es un plástico ligero, resistente y transparente. Es uno de los materiales más utilizados para fabricar envases de bebidas y diferentes productos alimentarios.",
+
+                characteristic:
+                    "Ligero y resistente",
+
+                uses:
+                    "Envases y botellas",
+
+                examples:
+                    "Botellas de bebidas · Envases · Recipientes · Bandejas",
+
+                images: [
+
+                    "{{ url_for('static', filename='img/materiales/pet/pet-1.jpg') }}",
+
+                    "{{ url_for('static', filename='img/materiales/pet/pet-2.jpg') }}",
+
+                    "{{ url_for('static', filename='img/materiales/pet/pet-3.jpg') }}"
+
+                ]
+
+            },
+
+
+            {
+
+                name: "HDPE / PP",
+
+                subtitle:
+                    "Polietileno de alta densidad / Polipropileno",
+
+                code:
+                    "02 / 05",
+
+                description:
+                    "El HDPE y el PP son plásticos resistentes utilizados en una gran variedad de envases y productos. Presentan buena resistencia química y mecánica.",
+
+                characteristic:
+                    "Resistente",
+
+                uses:
+                    "Envases y recipientes",
+
+                examples:
+                    "Envases de productos · Tapas · Recipientes · Algunos utensilios",
+
+                images: [
+
+                    "{{ url_for('static', filename='img/materiales/hdpe_pp/hdpe-1.jpg') }}",
+
+                    "{{ url_for('static', filename='img/materiales/hdpe_pp/hdpe-2.jpg') }}",
+
+                    "{{ url_for('static', filename='img/materiales/hdpe_pp/hdpe-3.jpg') }}"
+
+                ]
+
+            }
+
+        ];
+
+
+
+        /*
+         * ====================================================
+         * VARIABLES DEL CARRUSEL
+         * ====================================================
+         */
+
+        let currentMaterial = 0;
+
+        let currentPhoto = 0;
+
+
+
+        /*
+         * ====================================================
+         * ACTUALIZAR MATERIAL
+         * ====================================================
+         */
+
+        function updateMaterial() {
+
+
+            const material =
+                materials[currentMaterial];
+
+
+
+            /* CONTADOR */
+
+            document
+                .getElementById("material-number")
+                .textContent =
+                `0${currentMaterial + 1} / 04`;
+
+
+
+            /* CÓDIGO */
+
+            document
+                .getElementById("material-code")
+                .textContent =
+                `♻ CÓDIGO DE RECICLAJE ${material.code}`;
+
+
+
+            /* NOMBRE */
+
+            document
+                .getElementById("material-name")
+                .textContent =
+                material.name;
+
+
+
+            /* SUBTÍTULO */
+
+            document
+                .getElementById("material-subtitle")
+                .textContent =
+                material.subtitle;
+
+
+
+            /* DESCRIPCIÓN */
+
+            document
+                .getElementById("material-description")
+                .textContent =
+                material.description;
+
+
+
+            /* DATOS */
+
+            document
+                .getElementById("data-name")
+                .textContent =
+                material.subtitle;
+
+
+
+            document
+                .getElementById("data-code")
+                .textContent =
+                `♻ ${material.code}`;
+
+
+
+            document
+                .getElementById("data-characteristic")
+                .textContent =
+                material.characteristic;
+
+
+
+            document
+                .getElementById("data-uses")
+                .textContent =
+                material.uses;
+
+
+
+            /* EJEMPLOS */
+
+            document
+                .getElementById("data-examples")
+                .textContent =
+                material.examples;
+
+
+
+            /*
+             * VOLVER A LA PRIMERA FOTO
+             */
+
+            currentPhoto = 0;
+
+
+
+            document
+                .getElementById("material-image")
+                .src =
+                material.images[0];
+
+
+
+            document
+                .getElementById("material-image")
+                .alt =
+                `Material ${material.name}`;
+
+
+
+            /*
+             * ACTUALIZAR ETIQUETA DE FOTO
+             */
+
+            document
+                .getElementById("photo-label")
+                .textContent =
+                material.name;
+
+
+
+            /*
+             * ACTUALIZAR MINIATURAS
+             */
+
+            const thumbnails =
+                document.getElementById(
+                    "photo-thumbnails"
+                );
+
+
+            thumbnails.innerHTML = "";
+
+
+
+            material.images.forEach(
+                (image, index) => {
+
+
+                    const button =
+                        document.createElement("button");
+
+
+                    button.onclick =
+                        function () {
+
+                            changePhoto(index);
+
+                        };
+
+
+
+                    const img =
+                        document.createElement("img");
+
+
+                    img.src = image;
+
+                    img.alt =
+                        `${material.name} fotografía ${index + 1}`;
+
+
+
+                    button.appendChild(img);
+
+                    thumbnails.appendChild(button);
+
+                }
+            );
+
+
+
+            /*
+             * ACTUALIZAR INDICADORES
+             */
+
+            document
+                .querySelectorAll(".indicator")
+                .forEach(
+                    (indicator, index) => {
+
+
+                        indicator.classList.toggle(
+                            "active",
+                            index === currentMaterial
+                        );
+
+                    }
+                );
+
+        }
+
+
+
+        /*
+         * ====================================================
+         * CAMBIAR MATERIAL
+         * ====================================================
+         */
+
+        function changeMaterial(direction) {
+
+
+            currentMaterial += direction;
+
+
+
+            if (currentMaterial < 0) {
+
+                currentMaterial =
+                    materials.length - 1;
+
+            }
+
+
+
+            if (
+                currentMaterial >=
+                materials.length
+            ) {
+
+                currentMaterial = 0;
+
+            }
+
+
+
+            updateMaterial();
+
+        }
+
+
+
+        /*
+         * ====================================================
+         * IR DIRECTAMENTE A UN MATERIAL
+         * ====================================================
+         */
+
+        function showMaterial(index) {
+
+            currentMaterial = index;
+
+            updateMaterial();
+
+        }
+
+
+
+        /*
+         * ====================================================
+         * CAMBIAR FOTO
+         * ====================================================
+         */
+
+        function changePhoto(index) {
+
+
+            currentPhoto = index;
+
+
+
+            const material =
+                materials[currentMaterial];
+
+
+
+            document
+                .getElementById("material-image")
+                .src =
+                material.images[currentPhoto];
+
+
+
+            document
+                .getElementById("material-image")
+                .alt =
+                `${material.name} fotografía ${currentPhoto + 1}`;
+
+        }
+
+
+
+        /*
+         * ====================================================
+         * INICIALIZAR
+         * ====================================================
+         */
+
+        updateMaterial();
+
+
+    </script>
+
+
+</body>
+
+</html>
+

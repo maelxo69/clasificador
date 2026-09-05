@@ -1,0 +1,557 @@
+.materials-header {
+
+    padding: 75px 9% 45px;
+
+    background: var(--crema);
+
+    max-width: 1000px;
+}
+
+.materials-header h1 {
+
+    color: var(--verde-oscuro);
+
+    font-size: clamp(42px, 5vw, 62px);
+
+    letter-spacing: -2px;
+
+    margin-bottom: 18px;
+}
+
+.materials-header p {
+
+    max-width: 650px;
+
+    color: #687369;
+
+    font-size: 16px;
+
+    line-height: 1.7;
+}
+
+
+/* ================= CARRUSEL ================= */
+
+.material-carousel {
+
+    position: relative;
+
+    padding: 30px 9% 70px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 30px;
+
+    background: var(--crema);
+}
+
+
+/* ================= SLIDE ================= */
+
+.material-slide {
+
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 75px;
+
+    align-items: center;
+
+    min-height: 510px;
+}
+
+
+/* ================= GALERÍA ================= */
+
+.material-gallery {
+
+    width: 100%;
+
+    max-width: 560px;
+}
+
+
+/* FOTO PRINCIPAL */
+
+.main-photo {
+
+    height: 420px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 14px;
+
+    background: var(--verde-oscuro);
+
+    box-shadow:
+        0 25px 50px rgba(25, 45, 32, 0.18);
+}
+
+.main-photo img {
+
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    transition: opacity 0.25s;
+}
+
+
+/* ETIQUETA FOTO */
+
+.photo-label {
+
+    position: absolute;
+
+    left: 20px;
+
+    bottom: 20px;
+
+    padding: 8px 14px;
+
+    background: var(--amarillo);
+
+    color: var(--verde-oscuro);
+
+    border-radius: 5px;
+
+    font-size: 12px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+}
+
+
+/* ================= MINIATURAS ================= */
+
+.photo-thumbnails {
+
+    display: flex;
+
+    gap: 10px;
+
+    margin-top: 12px;
+}
+
+.photo-thumbnails button {
+
+    width: 85px;
+
+    height: 65px;
+
+    padding: 0;
+
+    border: 2px solid transparent;
+
+    border-radius: 6px;
+
+    overflow: hidden;
+
+    cursor: pointer;
+
+    background: #d9d0bd;
+
+    transition: 0.2s;
+}
+
+.photo-thumbnails button:hover {
+
+    border-color: var(--amarillo);
+}
+
+.photo-thumbnails img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+/* ================= INFORMACIÓN ================= */
+
+.material-info {
+
+    max-width: 570px;
+
+    position: relative;
+}
+
+.material-number {
+
+    position: absolute;
+
+    right: 0;
+
+    top: 0;
+
+    color: #c6bba5;
+
+    font-size: 13px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+}
+
+
+.material-code {
+
+    display: inline-block;
+
+    margin-bottom: 15px;
+
+    color: var(--terracota);
+
+    font-size: 10px;
+
+    font-weight: 900;
+
+    letter-spacing: 1.5px;
+}
+
+
+.material-info h2 {
+
+    color: var(--verde-oscuro);
+
+    font-size: 62px;
+
+    line-height: 1;
+
+    letter-spacing: -2px;
+
+    margin-bottom: 7px;
+}
+
+
+.material-info h3 {
+
+    color: var(--verde);
+
+    font-size: 19px;
+
+    font-weight: 600;
+
+    margin-bottom: 25px;
+}
+
+
+.material-description {
+
+    color: #687369;
+
+    font-size: 15px;
+
+    line-height: 1.8;
+
+    margin-bottom: 30px;
+}
+
+
+/* ================= DATOS ================= */
+
+.material-data {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 17px 25px;
+
+    margin-bottom: 30px;
+}
+
+.material-data div {
+
+    padding-bottom: 13px;
+
+    border-bottom: 1px solid #d8cfbd;
+}
+
+.material-data span {
+
+    display: block;
+
+    color: #8b8e84;
+
+    font-size: 9px;
+
+    font-weight: 900;
+
+    letter-spacing: 1.2px;
+
+    margin-bottom: 6px;
+}
+
+.material-data strong {
+
+    color: var(--verde-oscuro);
+
+    font-size: 12px;
+
+    line-height: 1.4;
+}
+
+
+/* ================= EJEMPLOS ================= */
+
+.examples {
+
+    padding: 17px 20px;
+
+    border-left: 3px solid var(--amarillo);
+
+    background: rgba(229, 169, 45, 0.08);
+}
+
+.examples span {
+
+    display: block;
+
+    color: var(--terracota);
+
+    font-size: 9px;
+
+    font-weight: 900;
+
+    letter-spacing: 1.2px;
+
+    margin-bottom: 6px;
+}
+
+.examples p {
+
+    color: #687369;
+
+    font-size: 12px;
+
+    line-height: 1.6;
+}
+
+
+/* ================= BOTONES CARRUSEL ================= */
+
+.carousel-btn {
+
+    width: 48px;
+
+    height: 48px;
+
+    flex-shrink: 0;
+
+    border: 1px solid #c9bfaa;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,0.5);
+
+    color: var(--verde);
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    transition: 0.25s;
+
+    z-index: 2;
+}
+
+.carousel-btn:hover {
+
+    background: var(--verde);
+
+    color: white;
+
+    border-color: var(--verde);
+
+    transform: scale(1.05);
+}
+
+
+/* ================= INDICADORES ================= */
+
+.material-indicators {
+
+    padding: 0 9% 70px;
+
+    display: flex;
+
+    gap: 10px;
+
+    background: var(--crema);
+}
+
+.indicator {
+
+    padding: 11px 20px;
+
+    border: 1px solid #d1c7b4;
+
+    border-radius: 5px;
+
+    background: transparent;
+
+    color: #687369;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.indicator:hover {
+
+    border-color: var(--verde);
+
+    color: var(--verde);
+}
+
+.indicator.active {
+
+    background: var(--verde);
+
+    border-color: var(--verde);
+
+    color: white;
+}
+
+
+/* ================= INFORMACIÓN FINAL ================= */
+
+.classification-info {
+
+    padding: 75px 9%;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 80px;
+
+    background: var(--blanco);
+
+    border-top: 1px solid #e3dac9;
+}
+
+.classification-info h2 {
+
+    color: var(--verde-oscuro);
+
+    font-size: 32px;
+
+    line-height: 1.15;
+}
+
+.classification-info > p {
+
+    color: #687369;
+
+    font-size: 15px;
+
+    line-height: 1.8;
+
+    align-self: center;
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 1000px) {
+
+    .material-slide {
+
+        grid-template-columns: 1fr;
+
+        gap: 45px;
+    }
+
+    .material-gallery {
+
+        max-width: 700px;
+
+        margin: auto;
+    }
+
+    .material-info {
+
+        max-width: 700px;
+
+        margin: auto;
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .materials-header {
+
+        padding: 55px 6% 30px;
+    }
+
+    .material-carousel {
+
+        padding: 20px 6% 50px;
+
+        gap: 10px;
+    }
+
+    .carousel-btn {
+
+        width: 40px;
+
+        height: 40px;
+
+        font-size: 16px;
+    }
+
+    .main-photo {
+
+        height: 300px;
+    }
+
+    .material-info h2 {
+
+        font-size: 48px;
+    }
+
+    .material-data {
+
+        grid-template-columns: 1fr;
+    }
+
+    .material-indicators {
+
+        padding: 0 6% 55px;
+
+        flex-wrap: wrap;
+    }
+
+    .classification-info {
+
+        padding: 60px 6%;
+
+        grid-template-columns: 1fr;
+
+        gap: 30px;
+    }
+
+}
+

@@ -1,0 +1,1046 @@
+
+/* =========================================================
+   de ÜTSÜIN MMA
+   Identidad afrocolombiana / Caribe colombiano
+   ========================================================= */
+
+
+/* ================= VARIABLES ================= */
+
+:root {
+
+    --verde: #315c3b;
+    --verde-claro: #527c4c;
+    --verde-oscuro: #1c3827;
+
+    --amarillo: #e5a92d;
+    --amarillo-claro: #f2c75c;
+
+    --terracota: #b85c38;
+    --rojo: #8e3d2b;
+
+    --crema: #f5eedf;
+    --arena: #e8dcc4;
+
+    --oscuro: #17231b;
+    --texto: #26342a;
+
+    --blanco: #fffdf7;
+}
+
+
+/* ================= GENERAL ================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--crema);
+    color: var(--texto);
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+/* ================= NAVBAR ================= */
+
+.navbar {
+    height: 82px;
+
+    padding: 0 7%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: var(--blanco);
+
+    border-bottom: 1px solid rgba(49, 92, 59, 0.15);
+
+    position: relative;
+    z-index: 10;
+}
+
+
+/* LOGO */
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-symbol {
+    width: 43px;
+    height: 43px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    overflow: hidden;
+
+    background: transparent;
+}
+
+.logo-symbol img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+
+.logo-name {
+    display: block;
+
+    color: var(--verde-oscuro);
+
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.logo small {
+    display: block;
+
+    color: #718073;
+
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+
+/* NAV */
+
+nav {
+    display: flex;
+    gap: 38px;
+}
+
+nav a {
+    position: relative;
+
+    color: #506055;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    transition: 0.25s;
+}
+
+nav a:hover,
+nav a.active {
+    color: var(--verde);
+}
+
+nav a.active::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: -9px;
+
+    height: 2px;
+
+    background: var(--amarillo);
+}
+
+
+/* STATUS */
+
+.status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    color: var(--verde);
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: #56a35c;
+
+    box-shadow: 0 0 0 4px rgba(86, 163, 92, 0.12);
+}
+
+
+/* ================= PATRÓN ================= */
+
+.pattern-top {
+    height: 9px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--verde) 25%,
+            transparent 25%
+        ) -10px 0 / 20px 20px,
+
+        linear-gradient(
+            225deg,
+            var(--amarillo) 25%,
+            transparent 25%
+        ) -10px 0 / 20px 20px,
+
+        linear-gradient(
+            315deg,
+            var(--terracota) 25%,
+            transparent 25%
+        ) 0 0 / 20px 20px,
+
+        linear-gradient(
+            45deg,
+            var(--verde-oscuro) 25%,
+            transparent 25%
+        ) 0 0 / 20px 20px;
+}
+
+
+/* ================= HERO ================= */
+
+.hero {
+    min-height: 650px;
+
+    padding: 80px 9%;
+
+    display: grid;
+
+    grid-template-columns: 1.05fr 0.95fr;
+
+    align-items: center;
+
+    gap: 50px;
+
+    background:
+        radial-gradient(
+            circle at 10% 20%,
+            rgba(229, 169, 45, 0.14),
+            transparent 28%
+        ),
+
+        radial-gradient(
+            circle at 90% 80%,
+            rgba(184, 92, 56, 0.10),
+            transparent 30%
+        ),
+
+        var(--crema);
+}
+
+
+/* HERO TEXT */
+
+.hero-content {
+    max-width: 650px;
+}
+
+.tag {
+    display: inline-flex;
+
+    align-items: center;
+    gap: 8px;
+
+    margin-bottom: 24px;
+    padding: 9px 15px;
+
+    border: 1px solid rgba(49, 92, 59, 0.25);
+
+    border-radius: 30px;
+
+    color: var(--verde);
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+}
+
+.tag span {
+    color: var(--amarillo);
+}
+
+.hero h1 {
+    color: var(--verde-oscuro);
+
+    font-size: clamp(48px, 5vw, 74px);
+
+    line-height: 0.98;
+
+    letter-spacing: -3px;
+
+    margin-bottom: 28px;
+}
+
+.hero h1 span {
+    display: block;
+
+    color: var(--terracota);
+}
+
+.hero p {
+    max-width: 570px;
+
+    color: #657267;
+
+    font-size: 17px;
+
+    line-height: 1.8;
+
+    margin-bottom: 35px;
+}
+
+
+/* BUTTONS */
+
+.hero-buttons {
+    display: flex;
+    gap: 14px;
+}
+
+.btn-primary,
+.btn-secondary {
+    padding: 15px 24px;
+
+    border-radius: 7px;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    transition: 0.25s;
+}
+
+.btn-primary {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+
+    background: var(--verde);
+
+    color: white;
+
+    box-shadow: 0 8px 20px rgba(49, 92, 59, 0.18);
+}
+
+.btn-primary:hover {
+    background: var(--verde-oscuro);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    border: 1px solid #c8c0ae;
+
+    color: var(--verde-oscuro);
+
+    background: rgba(255,255,255,0.4);
+}
+
+.btn-secondary:hover {
+    border-color: var(--verde);
+}
+
+
+/* ================= HERO VISUAL ================= */
+
+.hero-visual {
+    height: 440px;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* CÍRCULOS */
+
+.visual-circle {
+    position: absolute;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(49, 92, 59, 0.16);
+}
+
+.circle-one {
+    width: 420px;
+    height: 420px;
+}
+
+.circle-two {
+    width: 310px;
+    height: 310px;
+
+    border: 2px dashed rgba(184, 92, 56, 0.3);
+}
+
+
+/* TARJETA */
+
+.tech-card {
+    width: 310px;
+    height: 350px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #294d34,
+            #182c20
+        );
+
+    box-shadow:
+        0 30px 60px rgba(24, 44, 32, 0.25);
+
+    padding: 25px;
+}
+
+
+/* PATRÓN DE FONDO */
+
+.tech-card::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    opacity: 0.08;
+
+    background-image:
+        linear-gradient(45deg, white 25%, transparent 25%),
+        linear-gradient(-45deg, white 25%, transparent 25%);
+
+    background-size: 38px 38px;
+
+    pointer-events: none;
+}
+
+
+.camera-icon {
+    position: relative;
+
+    font-size: 38px;
+
+    margin-bottom: 35px;
+}
+
+
+/* DETECCIÓN */
+
+.detected-box {
+    width: 185px;
+    height: 145px;
+
+    position: absolute;
+
+    left: 62px;
+    top: 105px;
+
+    border: 2px solid var(--amarillo);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.detected-box strong {
+    color: white;
+
+    font-size: 40px;
+
+    letter-spacing: 3px;
+}
+
+.detected-box small {
+    color: #c5d1c5;
+
+    font-size: 11px;
+}
+
+.detected-label {
+    position: absolute;
+
+    top: -25px;
+    left: 0;
+
+    color: var(--amarillo);
+
+    font-size: 9px;
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+
+/* ESQUINAS */
+
+.corner {
+    width: 12px;
+    height: 12px;
+
+    position: absolute;
+
+    border-color: var(--amarillo);
+    border-style: solid;
+}
+
+.top-left {
+    top: -2px;
+    left: -2px;
+
+    border-width: 2px 0 0 2px;
+}
+
+.top-right {
+    top: -2px;
+    right: -2px;
+
+    border-width: 2px 2px 0 0;
+}
+
+.bottom-left {
+    bottom: -2px;
+    left: -2px;
+
+    border-width: 0 0 2px 2px;
+}
+
+.bottom-right {
+    bottom: -2px;
+    right: -2px;
+
+    border-width: 0 2px 2px 0;
+}
+
+
+/* SCAN */
+
+.scan-line {
+    position: absolute;
+
+    width: 185px;
+    height: 1px;
+
+    left: 62px;
+    top: 175px;
+
+    background: var(--amarillo);
+
+    opacity: 0.8;
+}
+
+
+/* CONFIANZA */
+
+.confidence {
+    position: absolute;
+
+    left: 25px;
+    right: 25px;
+    bottom: 25px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding-top: 15px;
+
+    border-top: 1px solid rgba(255,255,255,0.15);
+
+    color: #aab9ac;
+
+    font-size: 11px;
+}
+
+.confidence strong {
+    color: var(--amarillo);
+
+    font-size: 16px;
+}
+
+
+/* ================= SECCIONES ================= */
+
+.identity,
+.how-section {
+    padding: 100px 9%;
+}
+
+.identity {
+    background: var(--blanco);
+}
+
+.section-title {
+    max-width: 700px;
+
+    margin-bottom: 55px;
+}
+
+.eyebrow {
+    display: block;
+
+    margin-bottom: 12px;
+
+    color: var(--terracota);
+
+    font-size: 10px;
+    font-weight: 900;
+
+    letter-spacing: 2px;
+}
+
+.section-title h2 {
+    color: var(--verde-oscuro);
+
+    font-size: 40px;
+
+    margin-bottom: 14px;
+}
+
+.section-title p {
+    color: #718073;
+
+    line-height: 1.7;
+}
+
+
+/* ================= CARDS ================= */
+
+.identity-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+.identity-card {
+    min-height: 260px;
+
+    position: relative;
+
+    padding: 35px;
+
+    border-radius: 10px;
+
+    border: 1px solid #e4ddcd;
+
+    background: var(--crema);
+
+    overflow: hidden;
+
+    transition: 0.3s;
+}
+
+.identity-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow: 0 18px 40px rgba(30, 50, 35, 0.08);
+}
+
+.card-number {
+    position: absolute;
+
+    top: 20px;
+    right: 25px;
+
+    color: #d9d0bd;
+
+    font-size: 12px;
+    font-weight: 900;
+}
+
+.card-icon {
+    width: 52px;
+    height: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 25px;
+
+    border-radius: 50%;
+
+    background: var(--verde);
+
+    color: var(--amarillo);
+
+    font-size: 22px;
+}
+
+.ecological .card-icon {
+    background: var(--amarillo);
+    color: var(--verde-oscuro);
+}
+
+.technology .card-icon {
+    background: var(--terracota);
+    color: white;
+}
+
+.identity-card h3 {
+    color: var(--verde-oscuro);
+
+    margin-bottom: 12px;
+
+    font-size: 19px;
+}
+
+.identity-card p {
+    color: #687369;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+}
+
+
+/* ================= FUNCIONAMIENTO ================= */
+
+.how-section {
+    background: var(--crema);
+}
+
+.steps {
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+}
+
+.step {
+    flex: 1;
+
+    display: flex;
+
+    gap: 20px;
+
+    align-items: flex-start;
+}
+
+.step-number {
+    min-width: 52px;
+    height: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: var(--verde);
+
+    color: var(--amarillo);
+
+    font-size: 12px;
+    font-weight: 900;
+}
+
+.step h3 {
+    color: var(--verde-oscuro);
+
+    margin-bottom: 10px;
+}
+
+.step p {
+    color: #687369;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+}
+
+.step-line {
+    width: 45px;
+
+    height: 1px;
+
+    background: #cfc4ae;
+}
+
+
+/* ================= EMPRESA ================= */
+
+.company-section {
+    padding: 80px 9%;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 80px;
+
+    background: var(--verde-oscuro);
+
+    color: white;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+
+/* DECORACIÓN */
+
+.company-section::after {
+    content: "✦";
+
+    position: absolute;
+
+    right: 7%;
+    bottom: -50px;
+
+    color: rgba(229, 169, 45, 0.12);
+
+    font-size: 250px;
+}
+
+.company-info h2 {
+    max-width: 550px;
+
+    font-size: 38px;
+
+    line-height: 1.1;
+
+    margin-bottom: 20px;
+}
+
+.company-info p {
+    max-width: 500px;
+
+    color: #b8c5ba;
+
+    line-height: 1.7;
+}
+
+.company-info .eyebrow {
+    color: var(--amarillo);
+}
+
+
+/* DATOS */
+
+.company-data {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 25px;
+
+    align-content: center;
+}
+
+.company-data div {
+    padding-bottom: 18px;
+
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+
+.company-data span {
+    display: block;
+
+    color: #91a295;
+
+    font-size: 9px;
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+
+    margin-bottom: 8px;
+}
+
+.company-data strong {
+    font-size: 13px;
+}
+
+
+/* ================= FOOTER ================= */
+
+footer {
+    min-height: 90px;
+
+    padding: 25px 9%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: #112018;
+
+    color: #87958b;
+
+    font-size: 11px;
+}
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    color: white;
+
+    font-size: 15px;
+    font-weight: 900;
+
+    letter-spacing: 1px;
+}
+
+.footer-logo img {
+    width: 32px;
+    height: 32px;
+
+    object-fit: contain;
+    display: block;
+}
+
+.copyright {
+    color: #627066;
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 900px) {
+
+    .navbar {
+        padding: 0 5%;
+    }
+
+    nav {
+        gap: 15px;
+    }
+
+    .status {
+        display: none;
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+
+        padding: 70px 7%;
+    }
+
+    .hero-visual {
+        height: 400px;
+    }
+
+    .identity-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .steps {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+    .step-line {
+        width: 1px;
+        height: 25px;
+
+        margin-left: 25px;
+    }
+
+    .company-section {
+        grid-template-columns: 1fr;
+
+        gap: 45px;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .navbar {
+        height: auto;
+
+        padding: 18px 5%;
+
+        flex-wrap: wrap;
+
+        gap: 15px;
+    }
+
+    nav {
+        order: 3;
+
+        width: 100%;
+
+        justify-content: center;
+    }
+
+    .hero {
+        padding: 55px 6%;
+    }
+
+    .hero h1 {
+        font-size: 45px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+    }
+
+    .hero-visual {
+        transform: scale(0.85);
+
+        margin: -20px 0;
+    }
+
+    .section-title h2 {
+        font-size: 32px;
+    }
+
+    .identity,
+    .how-section {
+        padding: 70px 6%;
+    }
+
+    .company-section {
+        padding: 65px 6%;
+    }
+
+    .company-data {
+        grid-template-columns: 1fr;
+    }
+
+    footer {
+        flex-direction: column;
+
+        gap: 15px;
+
+        text-align: center;
+    }
+}
