@@ -555,3 +555,41 @@
 
 }
 
+/* ================= REFUERZO MOBILE PARA MATERIALES ================= */
+
+@media (max-width: 600px) {
+    /* Mantiene las flechas accesibles sin ocultar la foto */
+    .material-carousel {
+        position: relative;
+        padding-left: 4%;
+        padding-right: 4%;
+    }
+    
+    .carousel-btn {
+        position: absolute;
+        top: 220px; /* Alineado verticalmente con la imagen */
+        z-index: 5;
+    }
+
+    .carousel-btn.prev {
+        left: 10px;
+    }
+
+    .carousel-btn.next {
+        right: 10px;
+    }
+
+    /* Permite deslizar los botones de materiales si no caben en pantalla */
+    .material-indicators {
+        display: flex;
+        overflow-x: auto;
+        white-space: nowrap;
+        padding-bottom: 40px;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .indicator {
+        flex: 0 0 auto;
+    }
+}
+
