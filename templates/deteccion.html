@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>de ÜTSÜIN MMA | Panel de Detección</title>
+    
+    <!-- CSS GENERAL -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- CSS ESPECÍFICO DE DETECCIÓN -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/deteccion.css') }}">
+</head>
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+    <header class="navbar">
+        <div class="logo">
+            <div class="logo-symbol">
+                <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo ÜTSÜIN MMA">
+            </div>
+            <div>
+                <span class="logo-name">de ÜTSÜIN MMA</span>
+                <small>Clasificación inteligente</small>
+            </div>
+        </div>
+
+        <nav>
+            <a href="/">Inicio</a>
+            <a href="/materiales">Materiales</a>
+            <a href="/deteccion" class="active">Detección IA</a>
+            <a href="/logout" style="color: var(--terracota);">Salir</a>
+        </nav>
+
+        <div class="status">
+            <span class="status-dot blink"></span>
+            En línea
+        </div>
+    </header>
+
+    <div class="pattern-top"></div>
+
+    <!-- ================= DASHBOARD ================= -->
+    <main class="dashboard-main">
+        
+        <section class="dashboard-header">
+            <span class="eyebrow">MONITOREO EN TIEMPO REAL</span>
+            <h1>Panel de Detección</h1>
+        </section>
+
+        <section class="dashboard-grid">
+            
+            <!-- ====== CÁMARA (ESP32-CAM) ====== -->
+            <div class="video-section">
+                <div class="video-frame">
+                    <!-- Aquí irá el stream real de la cámara más adelante -->
+                    <div class="video-placeholder">
+                        <span class="cam-icon">📷</span>
+                        <p>Esperando conexión con ESP32-CAM...</p>
+                    </div>
+                    <div class="scan-line-vertical"></div>
+                </div>
+                <div class="video-footer">
+                    <span>SEÑAL WI-FI: <strong>ESTABLE</strong></span>
+                    <span>MOTOR: <strong style="color: var(--terracota);">APAGADO</strong></span>
+                </div>
+            </div>
+
+            <!-- ====== PANEL DE INFORMACIÓN ====== -->
+            <div class="info-section">
+                
+                <!-- RESULTADO ACTUAL -->
+                <div class="dash-card result-card">
+                    <h3>Última Detección</h3>
+                    
+                    <div class="result-display">
+                        <div class="material-detected" id="ui-material">--</div>
+                        <div class="confidence-box">
+                            <span>Confianza</span>
+                            <strong id="ui-confidence">0%</strong>
+                        </div>
+                    </div>
+
+                    <div class="destination-box">
+                        <span>DESTINO:</span>
+                        <strong id="ui-destination">Esperando objeto...</strong>
+                    </div>
+                </div>
+
+                <!-- CONTROLES DEL SISTEMA -->
+                <div class="dash-card controls-card">
+                    <h3>Control de la Banda</h3>
+                    <div class="status-indicator">
+                        ESTADO: <span id="ui-status">EN ESPERA</span>
+                    </div>
+                    <div class="control-buttons">
+                        <button class="btn-primary" id="btn-iniciar" style="width: 100%; justify-content: center;">Iniciar Banda</button>
+                        <button class="btn-secondary" id="btn-detener" style="width: 100%; justify-content: center;">Detener</button>
+                    </div>
+                </div>
+
+                <!-- HISTORIAL -->
+                <div class="dash-card history-card">
+                    <h3>Historial Reciente</h3>
+                    <ul class="history-list" id="ui-history">
+                        <li class="history-empty">No hay detecciones en esta sesión.</li>
+                        </li> 
+                        -->
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,231 @@
+/* ================= DETECCIÓN DASHBOARD ================= */
+
+.dashboard-main {
+    min-height: calc(100vh - 91px);
+    background: var(--crema);
+    padding: 40px 9% 80px;
+}
+
+.dashboard-header {
+    margin-bottom: 30px;
+}
+
+.dashboard-header h1 {
+    color: var(--verde-oscuro);
+    font-size: 38px;
+    letter-spacing: -1px;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 30px;
+    align-items: start;
+}
+
+/* ================= CÁMARA ================= */
+
+.video-section {
+    background: var(--blanco);
+    border-radius: 12px;
+    padding: 15px;
+    border: 1px solid #e4ddcd;
+    box-shadow: 0 15px 35px rgba(30, 50, 35, 0.05);
+}
+
+.video-frame {
+    width: 100%;
+    aspect-ratio: 4/3;
+    background: var(--oscuro);
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.video-placeholder {
+    text-align: center;
+    color: #687369;
+}
+
+.cam-icon {
+    font-size: 45px;
+    display: block;
+    margin-bottom: 15px;
+    opacity: 0.5;
+}
+
+.scan-line-vertical {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: rgba(229, 169, 45, 0.4);
+    box-shadow: 0 0 10px var(--amarillo);
+    animation: scan 3s linear infinite;
+    display: none; /* Se activará con JS cuando la cámara esté lista */
+}
+
+@keyframes scan {
+    0% { top: 0; opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+}
+
+.video-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    padding: 0 10px;
+    font-size: 10px;
+    font-weight: 800;
+    color: #8b8e84;
+    letter-spacing: 1px;
+}
+
+/* ================= PANEL DE INFO ================= */
+
+.info-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.dash-card {
+    background: var(--blanco);
+    border-radius: 12px;
+    padding: 25px;
+    border: 1px solid #e4ddcd;
+    box-shadow: 0 10px 25px rgba(30, 50, 35, 0.04);
+}
+
+.dash-card h3 {
+    color: var(--verde-oscuro);
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e4ddcd;
+    padding-bottom: 10px;
+}
+
+/* ÚLTIMA DETECCIÓN */
+
+.result-display {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.material-detected {
+    font-size: 42px;
+    font-weight: 900;
+    color: var(--verde-oscuro);
+    letter-spacing: -1px;
+}
+
+.confidence-box {
+    text-align: right;
+}
+
+.confidence-box span {
+    display: block;
+    font-size: 10px;
+    font-weight: 800;
+    color: #8b8e84;
+    letter-spacing: 1px;
+}
+
+.confidence-box strong {
+    font-size: 24px;
+    color: var(--verde);
+}
+
+.destination-box {
+    background: rgba(229, 169, 45, 0.1);
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 3px solid var(--amarillo);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.destination-box span {
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--terracota);
+}
+
+.destination-box strong {
+    font-size: 14px;
+    color: var(--verde-oscuro);
+}
+
+/* CONTROLES */
+
+.status-indicator {
+    font-size: 12px;
+    font-weight: 800;
+    color: #687369;
+    margin-bottom: 15px;
+}
+
+.status-indicator span {
+    color: var(--amarillo);
+}
+
+.control-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+/* HISTORIAL */
+
+.history-list {
+    list-style: none;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+.history-empty {
+    font-size: 12px;
+    color: #8b8e84;
+    text-align: center;
+    padding: 10px 0;
+}
+
+/* ================= UTILIDADES ================= */
+
+.blink {
+    animation: blinker 1.5s linear infinite;
+}
+
+@keyframes blinker {
+    50% { opacity: 0.3; }
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 900px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+    .dashboard-main {
+        padding: 30px 6% 60px;
+    }
+}
+
+@media (max-width: 600px) {
+    .control-buttons {
+        flex-direction: column;
+    }
+    .material-detected {
+        font-size: 32px;
+    }
+}
