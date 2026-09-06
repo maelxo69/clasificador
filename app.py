@@ -58,6 +58,15 @@ def deteccion():
     return render_template("deteccion.html")
 
 
+@app.route("/ecodiseno")
+def ecodiseno():
+    if not session.get('logged_in'):
+        return redirect(url_for('login'))
+    return render_template("ecodiseno.html")
+
+
 if __name__ == "__main__":
+
+
     # host='0.0.0.0' permite que cualquier dispositivo en tu Wi-Fi acceda a la página
     app.run(host='0.0.0.0', port=5000, debug=True)
