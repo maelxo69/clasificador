@@ -52,22 +52,48 @@
             outline: none;
         }
         .idea-item {
-            margin-bottom: 25px;
-            padding-bottom: 15px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
             border-bottom: 1px solid #eee;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        .idea-content {
+            flex: 1;
+        }
+        .idea-image {
+            width: 180px;
+            height: 120px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            flex-shrink: 0;
+            border: 1px solid #e0e0e0;
+        }
+        .idea-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         .idea-item h3 {
-            color: #2e7d32;
+            color: var(--verde);
             margin-bottom: 10px;
             display: flex;
             align-items: center;
             gap: 10px;
+            font-size: 1.2rem;
         }
         .tag-process {
             font-size: 0.7rem;
-            background: #e8f5e9;
-            padding: 4px 8px;
-            border-radius: 4px;
+            background: var(--amarillo);
+            color: #333;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-weight: bold;
             text-transform: uppercase;
         }
     </style>
@@ -145,40 +171,45 @@
         const baseDeIdeas = {
             "PET": {
                 "triturado": [
-                    { t: "Fibra Textil", d: "Crea hilo para fabricar bolsos, camisetas o mochilas ecológicas." },
-                    { t: "Relleno Térmico", d: "Utiliza las hojuelas para rellenar cojines o chaquetas de invierno." }
+                    { t: "Fibra Textil", d: "Crea hilo para fabricar bolsos, camisetas o mochilas ecológicas.", icon: "🧵" },
+                    { t: "Relleno Térmico", d: "Utiliza las hojuelas para rellenar cojines o chaquetas de invierno.", icon: "🧥" },
+                    { t: "Filamento PET-G", d: "Procesado para impresión 3D de alta resistencia.", icon: "🖨️" }
                 ],
                 "prensado": [
-                    { t: "Láminas Rígidas", d: "Crea paneles divisorios o portadas de cuadernos resistentes." },
-                    { t: "Mobiliario Urbano", d: "Bancos de parque creados a partir de bloques de PET prensado." }
+                    { t: "Láminas Rígidas", d: "Crea paneles divisorios o portadas de cuadernos resistentes.", icon: "📚" },
+                    { t: "Mobiliario Urbano", d: "Bancos de parque creados a partir de bloques de PET prensado.", icon: "🪑" }
                 ]
             },
             "HDPE": {
                 "triturado": [
-                    { t: "Inyección de Moldes", d: "Crea macetas, llaveros o cubiertos reutilizables." },
-                    { t: "Filamento 3D", d: "Procesa el triturado para crear filamento para impresoras 3D." }
+                    { t: "Inyección de Moldes", d: "Crea macetas, llaveros o cubiertos reutilizables.", icon: "🪴" },
+                    { t: "Filamento 3D", d: "Procesa el triturado para crear filamento para impresoras 3D.", icon: "🖨️" },
+                    { t: "Azulejos de Plástico", d: "Fundición en moldes planos para revestimientos decorativos.", icon: "🧱" }
                 ],
                 "prensado": [
-                    { t: "Baldosas de Terrazo", d: "Crea pisos decorativos mezclando diferentes colores de tapas." },
-                    { t: "Tablas de Corte", d: "Tablas para cocina altamente duraderas y fáciles de limpiar." }
+                    { t: "Baldosas de Terrazo", d: "Crea pisos decorativos mezclando diferentes colores de tapas.", icon: "🎨" },
+                    { t: "Tablas de Corte", d: "Tablas para cocina altamente duraderas y fáciles de limpiar.", icon: "🔪" }
                 ]
             },
             "LDPE": {
                 "triturado": [
-                    { t: "Madera Plástica", d: "Mezcla con aserrín para crear vigas o postes de madera sintética." }
+                    { t: "Madera Plástica", d: "Mezcla con aserrín para crear vigas o postes de madera sintética.", icon: "🪵" },
+                    { t: "Aislante Térmico", d: "Fibras procesadas para paneles de construcción.", icon: "🏠" }
                 ],
                 "prensado": [
-                    { t: "Aislante Acústico", d: "Paneles prensados para insonorizar estudios o habitaciones." },
-                    { t: "Estuches Flexibles", d: "Prensado ligero para carpetas o estuches de herramientas." }
+                    { t: "Aislante Acústico", d: "Paneles prensados para insonorizar estudios o habitaciones.", icon: "🎵" },
+                    { t: "Estuches Flexibles", d: "Prensado ligero para carpetas o estuches de herramientas.", icon: "💼" },
+                    { t: "Superficies Antideslizantes", d: "Prensado con texturas para zonas húmedas.", icon: "💧" }
                 ]
             },
             "PVC": {
                 "triturado": [
-                    { t: "Suela de Calzado", d: "El PVC triturado es ideal para fabricar suelas de botas industriales." }
+                    { t: "Suela de Calzado", d: "El PVC triturado es ideal para fabricar suelas de botas industriales.", icon: "🥾" },
+                    { t: "Mangueras de Riego", d: "Procesado para crear tuberías de jardín flexibles.", icon: "🚿" }
                 ],
                 "prensado": [
-                    { t: "Macetas de Pared", d: "Estructuras verticales para huertos urbanos." },
-                    { t: "Protectores de Esquina", d: "Bloques resistentes para protección de columnas en parqueaderos." }
+                    { t: "Macetas de Pared", d: "Estructuras verticales para huertos urbanos.", icon: "🌿" },
+                    { t: "Protectores de Esquina", d: "Bloques resistentes para protección de columnas en parqueaderos.", icon: "🛡️" }
                 ]
             }
         };
@@ -195,12 +226,42 @@
                 return;
             }
 
-            let html = `<h2>Ideas para ${mat} (${proc})</h2><br>`;
-            ideas.forEach(idea => {
+            // Mapeo para normalizar nombres de archivos
+            const fileMapping = {
+                "PET": {
+                    "triturado": ["fribra-textil.png", "relleno_termico.jpg", "filamento_PET-G.jpg"],
+                    "prensado": ["láminas_rígidas.png", "mobiliario_urbano.png"]
+                },
+                "HDPE": {
+                    "triturado": ["inyeccion_moldes.jpg", "filamento_3D.jpg", "azulejos_plástico.png"],
+                    "prensado": ["baldosas_terrazo.png", "tablas_corte.jpg"]
+                },
+                "LDPE": {
+                    "triturado": ["madera_plastica.jpg", "aislante_térmico.png"],
+                    "prensado": ["aislante_acústico.jpg", "estuches_flexibles.jpg", "superficies_antideslizantes.jpg"]
+                },
+                "PVC": {
+                    "triturado": ["suela_calzado.jpg", "mangueras_riego.jpg"],
+                    "prensado": ["macetas_pared.jpg", "protectores_esquina.jpg"]
+                }
+            };
+
+            let html = `<h2 style="color: var(--verde); margin-bottom: 25px;">Ideas para ${mat} <small style="color:#666">(${proc})</small></h2>`;
+            
+            ideas.forEach((idea, index) => {
+                const folderName = `${mat.toLowerCase()}_${proc.toLowerCase()}`;
+                const fileName = fileMapping[mat][proc][index] || "default.jpg";
+                const imgPath = `/static/img/ideas/${folderName}/${fileName}`;
+
                 html += `
                     <div class="idea-item">
-                        <h3><span>♻️</span> ${idea.t} <span class="tag-process">${proc}</span></h3>
-                        <p>${idea.d}</p>
+                        <div class="idea-content">
+                            <h3>${idea.t} <span class="tag-process">${proc}</span></h3>
+                            <p style="color: #666; line-height: 1.6;">${idea.d}</p>
+                        </div>
+                        <div class="idea-image">
+                            <img src="${imgPath}" alt="${idea.t}" onerror="this.src='{{ url_for('static', filename='img/logo.png') }}'">
+                        </div>
                     </div>
                 `;
             });
