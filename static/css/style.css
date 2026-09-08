@@ -1,31 +1,72 @@
-
 /* =========================================================
    de ÜTSÜIN MMA
    Identidad afrocolombiana / Caribe colombiano
+
+   Fundamento del rediseño (investigación):
+   - En los estampados geo-batik del Pacífico afrocolombiano
+     (Chocó y comunidades afrodescendientes) el color no es
+     decorativo, es simbólico: rojo = fuerza, azul turquesa = el
+     mar, amarillo = la luz (en los turbantes tradicionales el
+     amarillo marcaba autoridad), negro = la raíz.
+   - El lenguaje visual afro no es figurativo (siluetas de
+     personas), es geométrico: kente, adire, bogolanfini —
+     rombos, franjas tejidas y repetición ritmica.
+   - Es una estética de alegría y resistencia: colores vivos,
+     festivos, conectados con la naturaleza.
+   Por eso este rediseño reemplaza las siluetas por una franja
+   tejida de 4 colores simbólicos (raíz · luz · fuerza · mar)
+   que actúa como hilo conductor entre secciones, y un emblema
+   geométrico abstracto (arcos anidados = luz / turbante) en
+   vez de figuras humanas.
    ========================================================= */
+
+
+/* ================= TIPOGRAFÍA ================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=Manrope:wght@500;700;800&display=swap');
 
 
 /* ================= VARIABLES ================= */
 
 :root {
 
-    --verde: #315c3b;
-    --verde-claro: #527c4c;
-    --verde-oscuro: #1c3827;
+    /* Raíz — verde: sostenibilidad, territorio */
+    --verde: #147a3d;
+    --verde-claro: #3aab5f;
+    --verde-oscuro: #0b3a1f;
 
-    --amarillo: #e5a92d;
-    --amarillo-claro: #f2c75c;
+    /* Luz / autoridad — dorado: el color de los turbantes de estatus */
+    --amarillo: #f2a900;
+    --amarillo-claro: #ffd35c;
 
-    --terracota: #b85c38;
-    --rojo: #8e3d2b;
+    /* Fuerza — rojo-naranja intenso del geo-batik */
+    --terracota: #e0501f;
+    --rojo: #c81d34;
 
-    --crema: #f5eedf;
-    --arena: #e8dcc4;
+    /* El mar — turquesa caribeño, presente en el litoral de La Guajira */
+    --turquesa: #128a82;
+    --turquesa-oscuro: #0a4a46;
 
-    --oscuro: #17231b;
-    --texto: #26342a;
+    /* Tela cruda / neutros */
+    --crema: #f7f0dd;
+    --arena: #ecdfbd;
 
-    --blanco: #fffdf7;
+    --oscuro: #171310;
+    --texto: #2a231c;
+
+    --blanco: #fffdf8;
+
+    /* Franja tejida: los 4 colores simbólicos en repetición diagonal,
+       como una cinta de kente. Se usa como hilo conductor del sitio. */
+    --franja:
+        linear-gradient(135deg, var(--verde) 25%, transparent 25%) -8px 0 / 16px 16px,
+        linear-gradient(225deg, var(--amarillo) 25%, transparent 25%) -8px 0 / 16px 16px,
+        linear-gradient(315deg, var(--terracota) 25%, transparent 25%) 0 0 / 16px 16px,
+        linear-gradient(45deg, var(--turquesa) 25%, transparent 25%) 0 0 / 16px 16px;
+
+    /* Emblema: arcos anidados (luz / cresta de turbante), abstracto,
+       nunca figurativo. Se usa en dorado a baja opacidad. */
+    --emblema: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 160'%3E%3Cg fill='none' stroke='%23f2a900' stroke-width='9' stroke-linecap='round'%3E%3Cpath d='M18 130 Q100 15 182 130'/%3E%3Cpath d='M42 138 Q100 48 158 138'/%3E%3Cpath d='M66 145 Q100 82 134 145'/%3E%3C/g%3E%3Ccircle cx='100' cy='140' r='7' fill='%23f2a900'/%3E%3C/svg%3E");
 }
 
 
@@ -42,7 +83,7 @@ html {
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Manrope', Arial, Helvetica, sans-serif;
     background: var(--crema);
     color: var(--texto);
     overflow-x: hidden;
@@ -67,7 +108,7 @@ a {
 
     background: var(--blanco);
 
-    border-bottom: 1px solid rgba(49, 92, 59, 0.15);
+    border-bottom: 1px solid rgba(20, 122, 61, 0.18);
 
     position: relative;
     z-index: 10;
@@ -109,9 +150,10 @@ a {
 
     color: var(--verde-oscuro);
 
-    font-size: 20px;
-    font-weight: 900;
-    letter-spacing: 2px;
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 21px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
 }
 
 .logo small {
@@ -138,7 +180,7 @@ nav a {
     color: #506055;
 
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 700;
 
     transition: 0.25s;
 }
@@ -157,9 +199,10 @@ nav a.active::after {
     right: 0;
     bottom: -9px;
 
-    height: 2px;
+    height: 3px;
 
     background: var(--amarillo);
+    border-radius: 3px;
 }
 
 
@@ -173,7 +216,7 @@ nav a.active::after {
     color: var(--verde);
 
     font-size: 12px;
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .status-dot {
@@ -182,41 +225,20 @@ nav a.active::after {
 
     border-radius: 50%;
 
-    background: #56a35c;
+    background: #21c95a;
 
-    box-shadow: 0 0 0 4px rgba(86, 163, 92, 0.12);
+    box-shadow: 0 0 0 4px rgba(33, 201, 90, 0.16);
 }
 
 
-/* ================= PATRÓN ================= */
+/* ================= FRANJA TEJIDA ================= */
+/* Cinta de 4 colores simbólicos: raíz · luz · fuerza · mar.
+   Aparece en la parte superior y se repite como remate de cada
+   sección, como una costura entre paños de tela. */
 
 .pattern-top {
-    height: 9px;
-
-    background:
-        linear-gradient(
-            135deg,
-            var(--verde) 25%,
-            transparent 25%
-        ) -10px 0 / 20px 20px,
-
-        linear-gradient(
-            225deg,
-            var(--amarillo) 25%,
-            transparent 25%
-        ) -10px 0 / 20px 20px,
-
-        linear-gradient(
-            315deg,
-            var(--terracota) 25%,
-            transparent 25%
-        ) 0 0 / 20px 20px,
-
-        linear-gradient(
-            45deg,
-            var(--verde-oscuro) 25%,
-            transparent 25%
-        ) 0 0 / 20px 20px;
+    height: 10px;
+    background: var(--franja);
 }
 
 
@@ -227,6 +249,8 @@ nav a.active::after {
 
     padding: 80px 9%;
 
+    position: relative;
+
     display: grid;
 
     grid-template-columns: 1.05fr 0.95fr;
@@ -235,17 +259,19 @@ nav a.active::after {
 
     gap: 50px;
 
+    overflow: hidden;
+
     background:
         radial-gradient(
             circle at 10% 20%,
-            rgba(229, 169, 45, 0.14),
-            transparent 28%
+            rgba(242, 169, 0, 0.15),
+            transparent 30%
         ),
 
         radial-gradient(
             circle at 90% 80%,
-            rgba(184, 92, 56, 0.10),
-            transparent 30%
+            rgba(18, 138, 130, 0.12),
+            transparent 32%
         ),
 
         var(--crema);
@@ -256,6 +282,8 @@ nav a.active::after {
 
 .hero-content {
     max-width: 650px;
+    position: relative;
+    z-index: 2;
 }
 
 .tag {
@@ -267,7 +295,7 @@ nav a.active::after {
     margin-bottom: 24px;
     padding: 9px 15px;
 
-    border: 1px solid rgba(49, 92, 59, 0.25);
+    border: 1px solid rgba(20, 122, 61, 0.28);
 
     border-radius: 30px;
 
@@ -284,13 +312,17 @@ nav a.active::after {
 }
 
 .hero h1 {
+    font-family: 'Fraunces', Georgia, serif;
+
     color: var(--verde-oscuro);
 
-    font-size: clamp(48px, 5vw, 74px);
+    font-size: clamp(46px, 5vw, 72px);
+
+    font-weight: 600;
 
     line-height: 0.98;
 
-    letter-spacing: -3px;
+    letter-spacing: -1.5px;
 
     margin-bottom: 28px;
 }
@@ -299,6 +331,7 @@ nav a.active::after {
     display: block;
 
     color: var(--terracota);
+    font-weight: 900;
 }
 
 .hero p {
@@ -342,7 +375,7 @@ nav a.active::after {
 
     color: white;
 
-    box-shadow: 0 8px 20px rgba(49, 92, 59, 0.18);
+    box-shadow: 0 8px 22px rgba(20, 122, 61, 0.28);
 }
 
 .btn-primary:hover {
@@ -351,15 +384,16 @@ nav a.active::after {
 }
 
 .btn-secondary {
-    border: 1px solid #c8c0ae;
+    border: 1px solid var(--turquesa);
 
-    color: var(--verde-oscuro);
+    color: var(--turquesa-oscuro);
 
-    background: rgba(255,255,255,0.4);
+    background: rgba(255,255,255,0.5);
 }
 
 .btn-secondary:hover {
     border-color: var(--verde);
+    background: rgba(255,255,255,0.8);
 }
 
 
@@ -369,6 +403,7 @@ nav a.active::after {
     height: 440px;
 
     position: relative;
+    z-index: 1;
 
     display: flex;
     align-items: center;
@@ -376,26 +411,28 @@ nav a.active::after {
 }
 
 
-/* CÍRCULOS */
+/* CÍRCULOS — uno de raíz, uno de mar, en vez de dos tonos del mismo verde */
 
 .visual-circle {
     position: absolute;
 
     border-radius: 50%;
 
-    border: 1px solid rgba(49, 92, 59, 0.16);
+    z-index: 1;
 }
 
 .circle-one {
     width: 420px;
     height: 420px;
+
+    border: 1px solid rgba(20, 122, 61, 0.2);
 }
 
 .circle-two {
     width: 310px;
     height: 310px;
 
-    border: 2px dashed rgba(184, 92, 56, 0.3);
+    border: 2px dashed rgba(18, 138, 130, 0.35);
 }
 
 
@@ -406,6 +443,7 @@ nav a.active::after {
     height: 350px;
 
     position: relative;
+    z-index: 2;
 
     overflow: hidden;
 
@@ -414,18 +452,18 @@ nav a.active::after {
     background:
         linear-gradient(
             145deg,
-            #294d34,
-            #182c20
+            #1c6b39,
+            #0e2f18
         );
 
     box-shadow:
-        0 30px 60px rgba(24, 44, 32, 0.25);
+        0 30px 60px rgba(14, 47, 24, 0.3);
 
     padding: 25px;
 }
 
 
-/* PATRÓN DE FONDO */
+/* PATRÓN DE FONDO — textura rómbica sutil (geo-batik), no una foto */
 
 .tech-card::before {
     content: "";
@@ -434,11 +472,11 @@ nav a.active::after {
 
     inset: 0;
 
-    opacity: 0.08;
+    opacity: 0.09;
 
     background-image:
-        linear-gradient(45deg, white 25%, transparent 25%),
-        linear-gradient(-45deg, white 25%, transparent 25%);
+        linear-gradient(45deg, var(--amarillo-claro) 25%, transparent 25%),
+        linear-gradient(-45deg, var(--amarillo-claro) 25%, transparent 25%);
 
     background-size: 38px 38px;
 
@@ -475,11 +513,14 @@ nav a.active::after {
 }
 
 .detected-box strong {
+    font-family: 'Fraunces', Georgia, serif;
+
     color: white;
 
     font-size: 40px;
+    font-weight: 700;
 
-    letter-spacing: 3px;
+    letter-spacing: 2px;
 }
 
 .detected-box small {
@@ -557,7 +598,7 @@ nav a.active::after {
 
     background: var(--amarillo);
 
-    opacity: 0.8;
+    opacity: 0.85;
 }
 
 
@@ -595,6 +636,28 @@ nav a.active::after {
 .identity,
 .how-section {
     padding: 100px 9%;
+
+    position: relative;
+}
+
+/* Remate de la franja tejida al inicio de cada sección, como
+   una costura entre paños de tela */
+.identity::before,
+.how-section::before,
+.company-section::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: 6px;
+
+    background: var(--franja);
+
+    opacity: 0.85;
 }
 
 .identity {
@@ -605,10 +668,15 @@ nav a.active::after {
     max-width: 700px;
 
     margin-bottom: 55px;
+
+    position: relative;
+    z-index: 1;
 }
 
 .eyebrow {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 
     margin-bottom: 12px;
 
@@ -620,10 +688,27 @@ nav a.active::after {
     letter-spacing: 2px;
 }
 
+/* Marca del emblema (luz) junto a cada eyebrow, discreta */
+.eyebrow::before {
+    content: "";
+
+    width: 14px;
+    height: 11px;
+
+    background-image: var(--emblema);
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    opacity: 0.9;
+}
+
 .section-title h2 {
+    font-family: 'Fraunces', Georgia, serif;
+
     color: var(--verde-oscuro);
 
     font-size: 40px;
+    font-weight: 600;
 
     margin-bottom: 14px;
 }
@@ -638,6 +723,9 @@ nav a.active::after {
 /* ================= CARDS ================= */
 
 .identity-grid {
+    position: relative;
+    z-index: 1;
+
     display: grid;
 
     grid-template-columns: repeat(3, 1fr);
@@ -655,6 +743,7 @@ nav a.active::after {
     border-radius: 10px;
 
     border: 1px solid #e4ddcd;
+    border-top: 3px solid transparent;
 
     background: var(--crema);
 
@@ -663,10 +752,14 @@ nav a.active::after {
     transition: 0.3s;
 }
 
+.identity-card.cultural { border-top-color: var(--verde); }
+.identity-card.ecological { border-top-color: var(--amarillo); }
+.identity-card.technology { border-top-color: var(--turquesa); }
+
 .identity-card:hover {
     transform: translateY(-5px);
 
-    box-shadow: 0 18px 40px rgba(30, 50, 35, 0.08);
+    box-shadow: 0 18px 40px rgba(20, 122, 61, 0.14);
 }
 
 .card-number {
@@ -698,24 +791,33 @@ nav a.active::after {
     color: var(--amarillo);
 
     font-size: 22px;
+
+    box-shadow: 0 8px 18px rgba(20, 122, 61, 0.3);
 }
 
 .ecological .card-icon {
     background: var(--amarillo);
     color: var(--verde-oscuro);
+
+    box-shadow: 0 8px 18px rgba(242, 169, 0, 0.35);
 }
 
 .technology .card-icon {
-    background: var(--terracota);
+    background: var(--turquesa);
     color: white;
+
+    box-shadow: 0 8px 18px rgba(18, 138, 130, 0.35);
 }
 
 .identity-card h3 {
+    font-family: 'Fraunces', Georgia, serif;
+
     color: var(--verde-oscuro);
 
     margin-bottom: 12px;
 
     font-size: 19px;
+    font-weight: 600;
 }
 
 .identity-card p {
@@ -765,14 +867,20 @@ nav a.active::after {
 
     color: var(--amarillo);
 
-    font-size: 12px;
-    font-weight: 900;
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 14px;
+    font-weight: 700;
+
+    box-shadow: 0 6px 16px rgba(20, 122, 61, 0.28);
 }
 
 .step h3 {
+    font-family: 'Fraunces', Georgia, serif;
+
     color: var(--verde-oscuro);
 
     margin-bottom: 10px;
+    font-weight: 600;
 }
 
 .step p {
@@ -786,9 +894,9 @@ nav a.active::after {
 .step-line {
     width: 45px;
 
-    height: 1px;
+    height: 2px;
 
-    background: #cfc4ae;
+    background: var(--amarillo-claro);
 }
 
 
@@ -813,27 +921,44 @@ nav a.active::after {
 }
 
 
-/* DECORACIÓN */
-
+/* Emblema de luz (arcos anidados), no una silueta figurativa */
 .company-section::after {
-    content: "✦";
+    content: "";
 
     position: absolute;
 
-    right: 7%;
-    bottom: -50px;
+    right: 6%;
+    bottom: -30px;
 
-    color: rgba(229, 169, 45, 0.12);
+    width: 340px;
+    height: 270px;
 
-    font-size: 250px;
+    background-image: var(--emblema);
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    opacity: 0.14;
+
+    pointer-events: none;
+
+    z-index: 0;
+}
+
+.company-info,
+.company-data {
+    position: relative;
+    z-index: 1;
 }
 
 .company-info h2 {
+    font-family: 'Fraunces', Georgia, serif;
+
     max-width: 550px;
 
     font-size: 38px;
+    font-weight: 600;
 
-    line-height: 1.1;
+    line-height: 1.15;
 
     margin-bottom: 20px;
 }
@@ -848,6 +973,11 @@ nav a.active::after {
 
 .company-info .eyebrow {
     color: var(--amarillo);
+}
+
+.company-info .eyebrow::before {
+    /* En fondo oscuro el emblema dorado ya contrasta bien tal cual */
+    opacity: 1;
 }
 
 
@@ -884,6 +1014,7 @@ nav a.active::after {
 
 .company-data strong {
     font-size: 13px;
+    color: var(--amarillo-claro);
 }
 
 
@@ -894,16 +1025,38 @@ footer {
 
     padding: 25px 9%;
 
+    position: relative;
+
+    overflow: hidden;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    background: #112018;
+    background: #0c1810;
 
     color: #87958b;
 
     font-size: 11px;
 }
+
+/* Remate final de la franja tejida, cerrando el recorrido del sitio */
+footer::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: 5px;
+
+    background: var(--franja);
+
+    opacity: 0.7;
+}
+
 .footer-logo {
     display: flex;
     align-items: center;
@@ -911,10 +1064,14 @@ footer {
 
     color: white;
 
-    font-size: 15px;
-    font-weight: 900;
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 16px;
+    font-weight: 700;
 
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
+
+    position: relative;
+    z-index: 1;
 }
 
 .footer-logo img {
@@ -923,6 +1080,12 @@ footer {
 
     object-fit: contain;
     display: block;
+}
+
+footer p,
+.copyright {
+    position: relative;
+    z-index: 1;
 }
 
 .copyright {
@@ -1044,10 +1207,9 @@ footer {
         text-align: center;
     }
 }
-    .hola{
-        margin:center;
-        
-}/* ================= LOGIN ================= */
+
+
+/* ================= LOGIN ================= */
 
 .login-main {
     min-height: calc(100vh - 91px); /* Resta el alto del navbar y el patrón */
@@ -1055,9 +1217,9 @@ footer {
     align-items: center;
     justify-content: center;
     padding: 40px 5%;
-    
-    background: 
-        radial-gradient(circle at 50% 50%, rgba(229, 169, 45, 0.08), transparent 50%),
+
+    background:
+        radial-gradient(circle at 50% 50%, rgba(242, 169, 0, 0.1), transparent 50%),
         var(--crema);
 }
 
@@ -1067,14 +1229,17 @@ footer {
     padding: 45px 35px;
     border-radius: 12px;
     border: 1px solid #e4ddcd;
+    border-top: 3px solid var(--verde);
     background: var(--blanco);
     text-align: center;
-    box-shadow: 0 18px 40px rgba(30, 50, 35, 0.08);
+    box-shadow: 0 18px 40px rgba(20, 122, 61, 0.1);
 }
 
 .login-card h2 {
+    font-family: 'Fraunces', Georgia, serif;
     color: var(--verde-oscuro);
     font-size: 26px;
+    font-weight: 600;
     margin-bottom: 10px;
 }
 
@@ -1118,11 +1283,11 @@ footer {
 .input-group input:focus {
     border-color: var(--verde);
     background: var(--blanco);
-    box-shadow: 0 0 0 3px rgba(49, 92, 59, 0.1);
+    box-shadow: 0 0 0 3px rgba(20, 122, 61, 0.12);
 }
 
 .error-message {
-    background: rgba(184, 92, 56, 0.1);
+    background: rgba(224, 80, 31, 0.1);
     color: var(--terracota);
     padding: 12px;
     border-radius: 6px;
@@ -1130,5 +1295,5 @@ footer {
     font-weight: 600;
     margin-bottom: 20px;
     text-align: center;
-    border: 1px solid rgba(184, 92, 56, 0.2);
+    border: 1px solid rgba(224, 80, 31, 0.2);
 }

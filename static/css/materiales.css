@@ -9,9 +9,12 @@
 
 .materials-header h1 {
 
+    font-family: 'Fraunces', Georgia, serif;
+
     color: var(--verde-oscuro);
 
     font-size: clamp(42px, 5vw, 62px);
+    font-weight: 600;
 
     letter-spacing: -2px;
 
@@ -226,9 +229,12 @@
 
 .material-info h2 {
 
+    font-family: 'Fraunces', Georgia, serif;
+
     color: var(--verde-oscuro);
 
     font-size: 62px;
+    font-weight: 600;
 
     line-height: 1;
 
@@ -239,6 +245,8 @@
 
 
 .material-info h3 {
+
+    font-family: 'Fraunces', Georgia, serif;
 
     color: var(--verde);
 
@@ -452,9 +460,12 @@
 
 .classification-info h2 {
 
+    font-family: 'Fraunces', Georgia, serif;
+
     color: var(--verde-oscuro);
 
     font-size: 32px;
+    font-weight: 600;
 
     line-height: 1.15;
 }
@@ -591,5 +602,4 @@
     .indicator {
         flex: 0 0 auto;
     }
-}
-
+}   

@@ -1,4 +1,6 @@
-/* ================= DETECCIÓN DASHBOARD ================= */
+/* ================= DETECCIÓN DASHBOARD =================
+   Alineado a la paleta simbólica y franja tejida del sitio.
+   ========================================================= */
 
 .dashboard-main {
     min-height: calc(100vh - 91px);
@@ -7,12 +9,38 @@
 }
 
 .dashboard-header {
+    position: relative;
+
     margin-bottom: 30px;
+    padding-top: 20px;
+}
+
+/* Remate de franja tejida, igual que en el resto del sitio */
+.dashboard-header::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 64px;
+    height: 5px;
+
+    background: var(--franja);
+
+    border-radius: 3px;
 }
 
 .dashboard-header h1 {
+    font-family: 'Fraunces', Georgia, serif;
+
     color: var(--verde-oscuro);
+
     font-size: 38px;
+    font-weight: 600;
+
     letter-spacing: -1px;
 }
 
@@ -30,7 +58,7 @@
     border-radius: 12px;
     padding: 15px;
     border: 1px solid #e4ddcd;
-    box-shadow: 0 15px 35px rgba(30, 50, 35, 0.05);
+    box-shadow: 0 15px 35px rgba(11, 58, 31, 0.07);
 }
 
 .video-frame {
@@ -63,7 +91,7 @@
     left: 0;
     width: 100%;
     height: 2px;
-    background: rgba(229, 169, 45, 0.4);
+    background: rgba(242, 169, 0, 0.45);
     box-shadow: 0 0 10px var(--amarillo);
     animation: scan 3s linear infinite;
     display: none; /* Se activará con JS cuando la cámara esté lista */
@@ -100,12 +128,13 @@
     border-radius: 12px;
     padding: 25px;
     border: 1px solid #e4ddcd;
-    box-shadow: 0 10px 25px rgba(30, 50, 35, 0.04);
+    box-shadow: 0 10px 25px rgba(11, 58, 31, 0.05);
 }
 
 .dash-card h3 {
     color: var(--verde-oscuro);
     font-size: 15px;
+    font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 20px;
@@ -123,8 +152,10 @@
 }
 
 .material-detected {
+    font-family: 'Fraunces', Georgia, serif;
+
     font-size: 42px;
-    font-weight: 900;
+    font-weight: 700;
     color: var(--verde-oscuro);
     letter-spacing: -1px;
 }
@@ -147,7 +178,7 @@
 }
 
 .destination-box {
-    background: rgba(229, 169, 45, 0.1);
+    background: rgba(242, 169, 0, 0.1);
     padding: 15px;
     border-radius: 8px;
     border-left: 3px solid var(--amarillo);

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>de ÜTSÜIN MMA | Registro</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=4">
+</head>
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+    <header class="navbar">
+        <div class="logo">
+            <div class="logo-symbol">
+                <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo ÜTSÜIN MMA">
+            </div>
+            <div>
+                <span class="logo-name">de ÜTSÜIN MMA</span>
+                <small>Clasificación inteligente</small>
+            </div>
+        </div>
+
+        <div class="status" style="color: var(--terracota);">
+            <span class="status-dot" style="background: var(--terracota); box-shadow: 0 0 0 4px rgba(184, 92, 56, 0.12);"></span>
+            Sistema bloqueado
+        </div>
+    </header>
+
+    <!-- ================= DECORACIÓN ================= -->
+    <div class="pattern-top"></div>
+
+    <!-- ================= REGISTRO ================= -->
+    <main class="login-main">
+        <section class="login-section">
+            <div class="login-card">
+                
+                <div class="card-icon" style="margin: 0 auto 20px auto;">
+                    📝
+                </div>
+
+                <h2>Crear Cuenta</h2>
+                <p>Regístrese para obtener acceso al panel de clasificación inteligente.</p>
+
+                {% if error %}
+                    <div class="error-message">
+                        {{ error }}
+                    </div>
+                {% endif %}
+
+                <form action="/register" method="POST" class="login-form">
+                    <div class="input-group">
+                        <label for="username">Usuario</label>
+                        <input type="text" id="username" name="username" required autocomplete="off">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="password">Contraseña</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+
+                    <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
+                        Registrarse
+                        <span>→</span>
+                    </button>
+                </form>
+
+                <!-- SEPARADOR Y BOTÓN DE REGRESO -->
+                <div class="auth-divider">
+                    <span>¿Ya estás registrado?</span>
+                </div>
+                
+                <a href="{{ url_for('login') }}" class="btn-auth-secondary">Volver al inicio de sesión</a>
+
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>
