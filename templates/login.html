@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>de ÜTSÜIN MMA | Acceso al Sistema</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- El ?v=4 fuerza la actualización del CSS en el navegador -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=4">
 </head>
 <body>
 
@@ -41,7 +42,6 @@
                 <h2>Acceso al Sistema</h2>
                 <p>Ingrese sus credenciales para controlar la banda transportadora y la cámara.</p>
 
-                <!-- Mensaje de error desde Flask -->
                 {% if error %}
                     <div class="error-message">
                         {{ error }}
@@ -64,6 +64,13 @@
                         <span>→</span>
                     </button>
                 </form>
+
+                <!-- SEPARADOR Y BOTÓN NUEVO -->
+                <div class="auth-divider">
+                    <span>¿Nuevo en el sistema?</span>
+                </div>
+                
+                <a href="{{ url_for('register') }}" class="btn-auth-secondary">Crear una cuenta</a>
 
             </div>
         </section>

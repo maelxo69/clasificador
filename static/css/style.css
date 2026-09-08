@@ -1297,3 +1297,49 @@ footer p,
     text-align: center;
     border: 1px solid rgba(224, 80, 31, 0.2);
 }
+
+/* ================= SEPARADOR Y BOTÓN SECUNDARIO ================= */
+.auth-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 25px 0 15px 0;
+    color: #a3aba5;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #e4ddcd;
+}
+
+.auth-divider span {
+    padding: 0 15px;
+}
+
+.btn-auth-secondary {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background: transparent;
+    color: var(--verde-oscuro);
+    border: 2px solid #e4ddcd;
+    border-radius: 6px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.2s;
+    text-align: center;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+.btn-auth-secondary:hover {
+    border-color: var(--verde);
+    color: var(--verde);
+    background: #faf6ef;
+}
