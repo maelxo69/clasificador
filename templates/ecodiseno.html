@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>de ÜTSÜIN MMA | Ecodiseño</title>
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        .eco-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .eco-grid {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+        .selection-panel {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .suggestion-card {
+            background: white;
+            color: #333;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            min-height: 400px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--terracota);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+        select {
+            width: 100%;
+            padding: 12px;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            color: white;
+            border-radius: 8px;
+            outline: none;
+        }
+        .idea-item {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        .idea-content {
+            flex: 1;
+        }
+        .idea-image {
+            width: 180px;
+            height: 120px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            flex-shrink: 0;
+            border: 1px solid #e0e0e0;
+        }
+        .idea-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .idea-item h3 {
+            color: var(--verde);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.2rem;
+        }
+        .tag-process {
+            font-size: 0.7rem;
+            background: var(--amarillo);
+            color: #333;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">
+            <div class="logo-symbol">
+                <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo ÜTSÜIN MMA">
+            </div>
+            <div>
+                <span class="logo-name">de ÜTSÜIN MMA</span>
+                <small>Clasificación inteligente</small>
+            </div>
+        </div>
+        <nav>
+            <a href="/">Inicio</a>
+            <a href="/materiales">Materiales</a>
+            <a href="/deteccion">Detección IA</a>
+            <a href="/ecodiseno" class="active">Ecodiseño</a>
+            <a href="/logout" style="color: var(--terracota);">Salir</a>
+        </nav>
+
+        <div class="status">
+            <span class="status-dot blink"></span>
+            En línea
+        </div>
+    </header>
+
+    <div class="pattern-top"></div>
+
+    <main class="eco-container">
+        <section class="dashboard-header">
+            <span class="eyebrow">LABORATORIO CREATIVO</span>
+            <h1>Ecodiseño Circular</h1>
+            <p>Selecciona un material y un proceso para descubrir nuevas vidas para los residuos.</p
+        </section>
+
+        <div class="eco-grid">
+            <aside class="selection-panel">
+                <div class="form-group">
+                    <label>MATERIAL</label>
+                    <select id="select-material">
+                        <option value="PET">PET (Botellas)</option>
+                        <option value="HDPE">HDPE (Tapas/Envases)</option>
+                        <option value="LDPE">LDPE (Bolsas)</option>
+                        <option value="PVC">PVC (Tuberías)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>PROCESO</label>
+                    <select id="select-proceso">
+                        <option value="triturado">Hojuelas / Triturado</option>
+                        <option value="prensado">Bloques / Prensado</option>
+                    </select>
+                </div>
+
+                <button class="btn-primary" style="width: 100%; justify-content: center;" onclick="generarIdeas()">Generar Ideas</button>
+            </aside>
+
+            <article class="suggestion-card">
+                <div id="ideas-container">
+                    <div style="text-align: center; color: #999; margin-top: 100px;">
+                        <span style="font-size: 3rem;">💡</span>
+                        <p>Selecciona las opciones y presiona el botón para ver sugerencias.</p>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <script>
+        const baseDeIdeas = {
+            "PET": {
+                "triturado": [
+                    { t: "Fibra Textil", d: "Crea hilo para fabricar bolsos, camisetas o mochilas ecológicas.", icon: "🧵" },
+                    { t: "Relleno Térmico", d: "Utiliza las hojuelas para rellenar cojines o chaquetas de invierno.", icon: "🧥" },
+                    { t: "Filamento PET-G", d: "Procesado para impresión 3D de alta resistencia.", icon: "🖨️" }
+                ],
+                "prensado": [
+                    { t: "Láminas Rígidas", d: "Crea paneles divisorios o portadas de cuadernos resistentes.", icon: "📚" },
+                    { t: "Mobiliario Urbano", d: "Bancos de parque creados a partir de bloques de PET prensado.", icon: "🪑" }
+                ]
+            },
+            "HDPE": {
+                "triturado": [
+                    { t: "Inyección de Moldes", d: "Crea macetas, llaveros o cubiertos reutilizables.", icon: "🪴" },
+                    { t: "Filamento 3D", d: "Procesa el triturado para crear filamento para impresoras 3D.", icon: "🖨️" },
+                    { t: "Azulejos de Plástico", d: "Fundición en moldes planos para revestimientos decorativos.", icon: "🧱" }
+                ],
+                "prensado": [
+                    { t: "Baldosas de Terrazo", d: "Crea pisos decorativos mezclando diferentes colores de tapas.", icon: "🎨" },
+                    { t: "Tablas de Corte", d: "Tablas para cocina altamente duraderas y fáciles de limpiar.", icon: "🔪" }
+                ]
+            },
+            "LDPE": {
+                "triturado": [
+                    { t: "Madera Plástica", d: "Mezcla con aserrín para crear vigas o postes de madera sintética.", icon: "🪵" },
+                    { t: "Aislante Térmico", d: "Fibras procesadas para paneles de construcción.", icon: "🏠" }
+                ],
+                "prensado": [
+                    { t: "Aislante Acústico", d: "Paneles prensados para insonorizar estudios o habitaciones.", icon: "🎵" },
+                    { t: "Estuches Flexibles", d: "Prensado ligero para carpetas o estuches de herramientas.", icon: "💼" },
+                    { t: "Superficies Antideslizantes", d: "Prensado con texturas para zonas húmedas.", icon: "💧" }
+                ]
+            },
+            "PVC": {
+                "triturado": [
+                    { t: "Suela de Calzado", d: "El PVC triturado es ideal para fabricar suelas de botas industriales.", icon: "🥾" },
+                    { t: "Mangueras de Riego", d: "Procesado para crear tuberías de jardín flexibles.", icon: "🚿" }
+                ],
+                "prensado": [
+                    { t: "Macetas de Pared", d: "Estructuras verticales para huertos urbanos.", icon: "🌿" },
+                    { t: "Protectores de Esquina", d: "Bloques resistentes para protección de columnas en parqueaderos.", icon: "🛡️" }
+                ]
+            }
+        };
+
+        function generarIdeas() {
+            const mat = document.getElementById('select-material').value;
+            const proc = document.getElementById('select-proceso').value;
+            const container = document.getElementById('ideas-container');
+            
+            const ideas = baseDeIdeas[mat][proc] || [];
+            
+            if (ideas.length === 0) {
+                container.innerHTML = `<p>No hay ideas registradas para esta combinación aún.</p>`;
+                return;
+            }
+
+            // Mapeo para normalizar nombres de archivos
+            const fileMapping = {
+                "PET": {
+                    "triturado": ["fribra-textil.png", "relleno_termico.jpg", "filamento_PET-G.jpg"],
+                    "prensado": ["láminas_rígidas.png", "mobiliario_urbano.png"]
+                },
+                "HDPE": {
+                    "triturado": ["inyeccion_moldes.jpg", "filamento_3D.jpg", "azulejos_plástico.png"],
+                    "prensado": ["baldosas_terrazo.png", "tablas_corte.jpg"]
+                },
+                "LDPE": {
+                    "triturado": ["madera_plastica.jpg", "aislante_térmico.png"],
+                    "prensado": ["aislante_acústico.jpg", "estuches_flexibles.jpg", "superficies_antideslizantes.jpg"]
+                },
+                "PVC": {
+                    "triturado": ["suela_calzado.jpg", "mangueras_riego.jpg"],
+                    "prensado": ["macetas_pared.jpg", "protectores_esquina.jpg"]
+                }
+            };
+
+            let html = `<h2 style="color: var(--verde); margin-bottom: 25px;">Ideas para ${mat} <small style="color:#666">(${proc})</small></h2>`;
+            
+            ideas.forEach((idea, index) => {
+                const folderName = `${mat.toLowerCase()}_${proc.toLowerCase()}`;
+                const fileName = fileMapping[mat][proc][index] || "default.jpg";
+                const imgPath = `/static/img/ideas/${folderName}/${fileName}`;
+
+                html += `
+                    <div class="idea-item">
+                        <div class="idea-content">
+                            <h3>${idea.t} <span class="tag-process">${proc}</span></h3>
+                            <p style="color: #666; line-height: 1.6;">${idea.d}</p>
+                        </div>
+                        <div class="idea-image">
+                            <img src="${imgPath}" alt="${idea.t}" onerror="this.src='{{ url_for('static', filename='img/logo.png') }}'">
+                        </div>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+    </script>
+</body>
+</html>
