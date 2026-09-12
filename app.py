@@ -40,6 +40,7 @@ def login():
         if user and check_password_hash(user.password, pass_input):
             session['logged_in'] = True
             session['user'] = user.username
+            
             return redirect(url_for('inicio'))
         else:
             error = "Usuario o contraseña incorrectos"
@@ -68,16 +69,20 @@ def register():
 
 @app.route('/logout')
 def logout():
-    session.clear()
+    session.clear() # Borra toda la sesión por completo
     return redirect(url_for('login'))
-
 # ================= RUTAS PRINCIPALES (PROTEGIDAS) =================
 
 @app.route("/")
 def inicio():
     if not session.get('logged_in'):
         return redirect(url_for('login'))
-    return render_template("inicio.html")
+    
+    # Recuperamos el nombre del usuario de la sesión (o usamos un valor por defecto si no existe)
+    nombre_usuario = session.get('user_name', 'Usuario')
+    
+    # Se lo enviamos a la plantilla inicio.html
+    return render_template("inicio.html", nombre_usuario=nombre_usuario)
 
 @app.route("/materiales")
 def materiales():

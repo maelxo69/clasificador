@@ -1,27 +1,3 @@
-/* =========================================================
-   de ÜTSÜIN MMA
-   Identidad afrocolombiana / Caribe colombiano
-
-   Fundamento del rediseño (investigación):
-   - En los estampados geo-batik del Pacífico afrocolombiano
-     (Chocó y comunidades afrodescendientes) el color no es
-     decorativo, es simbólico: rojo = fuerza, azul turquesa = el
-     mar, amarillo = la luz (en los turbantes tradicionales el
-     amarillo marcaba autoridad), negro = la raíz.
-   - El lenguaje visual afro no es figurativo (siluetas de
-     personas), es geométrico: kente, adire, bogolanfini —
-     rombos, franjas tejidas y repetición ritmica.
-   - Es una estética de alegría y resistencia: colores vivos,
-     festivos, conectados con la naturaleza.
-   Por eso este rediseño reemplaza las siluetas por una franja
-   tejida de 4 colores simbólicos (raíz · luz · fuerza · mar)
-   que actúa como hilo conductor entre secciones, y un emblema
-   geométrico abstracto (arcos anidados = luz / turbante) en
-   vez de figuras humanas.
-   ========================================================= */
-
-
-/* ================= TIPOGRAFÍA ================= */
 
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=Manrope:wght@500;700;800&display=swap');
 
@@ -203,6 +179,175 @@ nav a.active::after {
 
     background: var(--amarillo);
     border-radius: 3px;
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+/* STATUS */
+.status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--verde);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #21c95a;
+    box-shadow: 0 0 0 4px rgba(33, 201, 90, 0.16);
+}
+
+/* USER DROPDOWN */
+.user-dropdown {
+    position: relative;
+    cursor: pointer;
+}
+
+.user-trigger {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 12px 6px 6px;
+    border-radius: 30px;
+    border: 1px solid rgba(20, 122, 61, 0.15);
+    background: var(--blanco);
+    transition: 0.3s ease;
+}
+
+.user-trigger:hover {
+    background: var(--crema);
+    border-color: var(--verde-claro);
+}
+
+.user-avatar {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--verde);
+    color: var(--amarillo);
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.user-name {
+    color: var(--verde-oscuro);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.chevron {
+    font-size: 9px;
+    color: #aab9ac;
+    transition: transform 0.3s ease;
+}
+
+.user-dropdown:hover .chevron {
+    transform: rotate(180deg);
+}
+
+/* MENÚ DESPLEGABLE (Tarjeta) */
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 15px);
+    right: 0;
+    width: 220px;
+    background: var(--blanco);
+    border-radius: 12px;
+    border: 1px solid #e4ddcd;
+    box-shadow: 0 15px 35px rgba(20, 122, 61, 0.12);
+    
+    /* Oculto por defecto */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: 100;
+}
+
+.user-dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-menu::before {
+    content: "";
+    position: absolute;
+    top: -6px;
+    right: 25px;
+    width: 12px;
+    height: 12px;
+    background: var(--blanco);
+    border-left: 1px solid #e4ddcd;
+    border-top: 1px solid #e4ddcd;
+    transform: rotate(45deg);
+}
+
+.dropdown-header {
+    padding: 18px 20px 12px 20px;
+}
+
+.dropdown-header strong {
+    display: block;
+    color: var(--verde-oscuro);
+    font-size: 15px;
+    margin-bottom: 4px;
+}
+
+.dropdown-header small {
+    color: #718073;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.dropdown-divider {
+    height: 1px;
+    background: rgba(20, 122, 61, 0.1);
+    margin: 5px 0;
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+    color: #506055;
+    font-size: 13px;
+    font-weight: 600;
+    transition: 0.2s ease;
+}
+
+.dropdown-item:hover {
+    background: var(--crema);
+    color: var(--verde);
+}
+
+.dropdown-item.logout-btn {
+    color: var(--terracota);
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+.dropdown-item.logout-btn:hover {
+    background: rgba(224, 80, 31, 0.08);
+}
+
+.logout-icon {
+    font-size: 16px;
+    font-weight: bold;
 }
 
 
@@ -1343,3 +1488,93 @@ footer p,
     color: var(--verde);
     background: #faf6ef;
 }
+
+.eco-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .eco-grid {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+        .selection-panel {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .suggestion-card {
+            background: white;
+            color: #333;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            min-height: 400px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--terracota);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+        select {
+            width: 100%;
+            padding: 12px;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            color: white;
+            border-radius: 8px;
+            outline: none;
+        }
+        .idea-item {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        .idea-content {
+            flex: 1;
+        }
+        .idea-image {
+            width: 180px;
+            height: 120px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            flex-shrink: 0;
+            border: 1px solid #e0e0e0;
+        }
+        .idea-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .idea-item h3 {
+            color: var(--verde);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.2rem;
+        }
+        .tag-process {
+            font-size: 0.7rem;
+            background: var(--amarillo);
+            color: #333;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }

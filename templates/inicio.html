@@ -12,35 +12,72 @@
 
 <body>
 
-    <!-- ================= NAVBAR ================= -->
-
+   <!-- ================= NAVBAR ================= -->
     <header class="navbar">
 
         <div class="logo">
             <div class="logo-symbol">
-    <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo ÜTSÜIN MMA">
-</div>
-
+                <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo ÜTSÜIN MMA">
+            </div>
             <div>
                 <span class="logo-name">de ÜTSÜIN MMA</span>
                 <small>Clasificación inteligente</small>
             </div>
         </div>
 
-                        <nav>
+        <nav>
             <a href="/" class="active">Inicio</a>
             <a href="/materiales">Materiales</a>
             <a href="/deteccion">Detección IA</a>
             <a href="/ecodiseno">Ecodiseño</a>
-            <a href="/logout" style="color: var(--terracota);">Salir</a>
         </nav>
 
-        <div class="status">
-            <span class="status-dot blink"></span>
-            En línea
+        <!-- Nuevo contenedor para Estado y Perfil de Usuario -->
+        <div class="navbar-right">
+            
+            <div class="status">
+                <span class="status-dot blink"></span>
+                En línea
+            </div>
+
+            <!-- Menú desplegable del usuario -->
+           <!-- Contenedor derecho del Navbar -->
+        <div class="navbar-right">
+            
+            <div class="status">
+                <span class="status-dot blink"></span>
+                En línea
+            </div>
+
+            <!-- CONDICIONAL DE JINJA2: Si el usuario está logueado -->
+            {% if session.get('logged_in') %}
+                <div class="user-dropdown">
+                    <div class="user-trigger">
+                        <div class="user-avatar">{{ session.get('user', 'U')[0] | upper }}</div>
+                        <span class="user-name">{{ session.get('user') }}</span>
+                        <span class="chevron">▼</span>
+                    </div>
+
+                    <div class="dropdown-menu">
+                        <div class="dropdown-header">
+                            <strong>{{ session.get('user') }}</strong>
+                            <small>Sistema activo</small>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <a href="/configuracion" class="dropdown-item">Configuración</a>
+                        <a href="/logout" class="dropdown-item logout-btn">
+                            <span>Cerrar sesión</span>
+                            <span class="logout-icon">→</span>
+                        </a>
+                    </div>
+                </div>
+            {% else %}
+                <!-- Si NO está logueado (como en la vista de login), muestra un botón de acceso -->
+                <a href="/login" class="btn-primary" style="padding: 8px 18px; font-size: 12px;">Ingresar</a>
+            {% endif %}
+
         </div>
     </header>
-
 
     <!-- ================= DECORACIÓN ================= -->
 
