@@ -34,7 +34,7 @@
         <div class="navbar-right">
             <div class="status">
                 <span class="status-dot blink"></span>
-                En línea
+                <span class="status-text">En línea</span> <!-- Etiqueta span vital para ocultar en móviles -->
             </div>
 
             <div class="user-dropdown">
@@ -74,10 +74,11 @@
             
             <!-- ====== CÁMARA ====== -->
             <div class="video-section">
-                <div class="video-frame" style="position: relative; overflow: hidden; background: #000; border-radius: 12px; display: flex; justify-content: center; align-items: center; min-height: 400px;">
+                <!-- Se eliminó el "style" en línea para no bloquear el CSS responsivo -->
+                <div class="video-frame">
                     
                     <!-- Transmisión en vivo desde la ruta de Flask -->
-                    <img src="{{ url_for('video_feed') }}" alt="Transmisión en vivo ÜTSÜIN MMA" style="width: 100%; height: 100%; object-fit: cover;">
+                    <img src="{{ url_for('video_feed') }}" alt="Transmisión en vivo ÜTSÜIN MMA" class="video-stream">
                     
                     <div class="scan-line-vertical"></div>
                 </div>

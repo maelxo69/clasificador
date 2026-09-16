@@ -9,6 +9,10 @@
 </head>
 <body>
 
+    <!-- CSS GENERAL -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=4">
+
+    <!-- ================= NAVBAR ================= -->
     <header class="navbar">
         <div class="logo">
             <div class="logo-symbol">
@@ -19,17 +23,40 @@
                 <small>Clasificación inteligente</small>
             </div>
         </div>
+
         <nav>
             <a href="/">Inicio</a>
             <a href="/materiales">Materiales</a>
             <a href="/deteccion">Detección IA</a>
             <a href="/ecodiseno" class="active">Ecodiseño</a>
-            <a href="/logout" style="color: var(--terracota);">Salir</a>
         </nav>
 
-        <div class="status">
-            <span class="status-dot blink"></span>
-            En línea
+        <div class="navbar-right">
+            <div class="status">
+                <span class="status-dot blink"></span>
+                <span class="status-text">En línea</span> 
+            </div>
+
+            <div class="user-dropdown">
+                <div class="user-trigger">
+                    <div class="user-avatar">{{ nombre_usuario[0] | upper }}</div>
+                    <span class="user-name">{{ nombre_usuario }}</span>
+                    <span class="chevron">▼</span>
+                </div>
+
+                <div class="dropdown-menu">
+                    <div class="dropdown-header">
+                        <strong>{{ nombre_usuario }}</strong>
+                        <small>Sistema activo</small>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <a href="/configuracion" class="dropdown-item">Configuración</a>
+                    <a href="/logout" class="dropdown-item logout-btn">
+                        <span>Cerrar sesión</span>
+                        <span class="logout-icon">→</span>
+                    </a>
+                </div>
+            </div>
         </div>
     </header>
 

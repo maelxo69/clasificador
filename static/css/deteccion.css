@@ -260,3 +260,57 @@
         font-size: 32px;
     }
 }
+
+/* ================= DISPOSITIVOS MÓVILES (Celulares) ================= */
+@media screen and (max-width: 768px) {
+    
+    /* 1. Apilar la cuadrícula principal verticalmente */
+    .dashboard-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 10px;
+    }
+
+    /* 2. Ajustar el tamaño de la cámara para que no desborde la pantalla */
+    .video-section .video-frame {
+        min-height: 250px !important; /* Sobrescribe los 400px que tienes en el HTML */
+        width: 100%;
+        border-radius: 8px;
+    }
+
+    /* 3. Hacer que las tarjetas de información ocupen todo el ancho */
+    .info-section {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .dash-card {
+        width: 100%;
+        box-sizing: border-box;
+        margin: 0;
+    }
+
+    /* 4. Ajustar la barra de navegación (Navbar) */
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 15px;
+        gap: 10px;
+    }
+
+    .navbar nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    /* Ocultar elementos no esenciales de la navbar en móvil si es necesario */
+    .navbar-right .status {
+        display: none; 
+    }
+}

@@ -1,1 +1,9 @@
 instance/
+pruebas/
+venv/
+env/
+*.env
+__pycache__/
+*.py[cod]
+*$py.class
+runs/

@@ -1578,3 +1578,120 @@ footer p,
             font-weight: bold;
             text-transform: uppercase;
         }
+/* ================= DISPOSITIVOS MÓVILES (Celulares) ================= */
+@media screen and (max-width: 768px) {
+    
+    /* ================= 1. NAVBAR Y PERFIL (CORREGIDO) ================= */
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 15px;
+        gap: 10px;
+        position: relative; /* ¡VITAL! Permite que el absolute de abajo funcione */
+    }
+
+    .navbar nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    /* ¡AQUÍ ESTÁ LA MAGIA PARA LA ESQUINA! */
+    .navbar-right {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+    }
+
+    /* Ocultar textos para dejar solo la bolita (avatar) */
+    .navbar-right .status-text,
+    .navbar-right .user-name,
+    .navbar-right .chevron {
+        display: none;
+    }
+
+    .navbar-right .status {
+        display: none; /* Oculta el estado "En línea" para no saturar el móvil */
+    }
+
+
+    /* ================= 2. PANEL DE DETECCIÓN ================= */
+    .dashboard-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 10px;
+    }
+
+    .video-section .video-frame {
+        min-height: 250px !important;
+        width: 100%;
+        border-radius: 8px;
+    }
+
+    .info-section {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .dash-card {
+        width: 100%;
+        box-sizing: border-box;
+        margin: 0;
+    }
+
+
+    /* ================= 3. PANEL DE ECODISEÑO ================= */
+    .eco-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .selection-panel {
+        width: 100%;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+    }
+
+    .suggestion-card {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 15px;
+    }
+
+    .idea-item {
+        display: flex;
+        flex-direction: column; 
+        align-items: center;
+        text-align: center;
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .idea-image {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .idea-image img {
+        width: 100%;
+        max-width: 280px; 
+        height: auto;
+        border-radius: 8px;
+    }
+
+    .dashboard-header h1 {
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    .dashboard-header p {
+        text-align: center;
+    }
+}
