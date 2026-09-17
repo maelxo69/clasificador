@@ -2,14 +2,13 @@ from flask import Flask, Response, render_template, request, redirect, url_for, 
 from flask_sqlalchemy import SQLAlchemy
 from ultralytics import YOLO
 import cv2
-from flask import Response
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 app.secret_key = 'clave_secreta_maqueta_utsui'
 
 # Carga de modelo
-ruta_modelo = 'runs/detect/modelo_plasticos-5/weights/best.pt'
+ruta_modelo = 'clasificador/runs/detect/train_definitivo/weights/best.pt'  # Asegúrate de que esta ruta sea correcta
 model = YOLO(ruta_modelo)
 print("Clases reconocidas por el modelo:", model.names)
 
@@ -116,10 +115,8 @@ def ecodiseno():
 
 # ================= CÁMARA E IA =================
 
-import cv2
-
 def generar_frames():
-    URL_CAMARA = 'http://192.168.1.85:4747/video' # Cambia esto a 127.0.0.1 si ya conectaste el USB
+    URL_CAMARA = 'http://192.168.11.191:4747/video' # Cambia esto a 127.0.0.1 si ya conectaste el USB
     
     # Diccionario de colores (formato BGR de OpenCV)
     colores = {

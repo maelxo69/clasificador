@@ -1,13 +1,13 @@
-path: C:/Users/SAMER/Desktop/clasificador_materiales/dataset
-train: train/images
-val: train/images
+train: ../train/images
+val: ../valid/images
+test: ../test/images
 
 nc: 4
 names: ['HDPE', 'LDPE', 'PET', 'PVC']
 
 roboflow:
   workspace: samer-andres-suarez-brito
-  project: proyecto-deteccion-veu3k
+  project: proyecto-v2
   version: 1
   license: CC BY 4.0
-  url: https://universe.roboflow.com/samer-andres-suarez-brito/proyecto-deteccion-veu3k/dataset/1
+  url: https://universe.roboflow.com/samer-andres-suarez-brito/proyecto-v2/dataset/1
