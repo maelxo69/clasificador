@@ -8,7 +8,7 @@
     <!-- CSS GENERAL -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <!-- CSS ESPECÍFICO DE DETECCIÓN -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/deteccion.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/deteccion.css') }}"}}?v=2">>
 </head>
 <body>
 
@@ -34,7 +34,7 @@
         <div class="navbar-right">
             <div class="status">
                 <span class="status-dot blink"></span>
-                <span class="status-text">En línea</span> <!-- Etiqueta span vital para ocultar en móviles -->
+                <span class="status-text">En línea</span>
             </div>
 
             <div class="user-dropdown">
@@ -66,7 +66,8 @@
     <main class="dashboard-main">
         
         <section class="dashboard-header">
-            <span class="eyebrow">MONITOREO EN TIEMPO REAL</span>
+            <!-- Se reemplazó la clase 'eyebrow' por estilos en línea para evitar que el CSS inyecte los triángulos extra -->
+            <span style="color: #c95c3f; font-weight: 700; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px;">MONITOREO EN TIEMPO REAL</span>
             <h1>Panel de Detección</h1>
         </section>
 
@@ -74,12 +75,9 @@
             
             <!-- ====== CÁMARA ====== -->
             <div class="video-section">
-                <!-- Se eliminó el "style" en línea para no bloquear el CSS responsivo -->
                 <div class="video-frame">
-                    
-                    <!-- Transmisión en vivo desde la ruta de Flask -->
-                    <img src="{{ url_for('video_feed') }}" alt="Transmisión en vivo ÜTSÜIN MMA" class="video-stream">
-                    
+                    <!-- Transmisión en vivo desde la ruta de Flask ajustada al contenedor -->
+                    <img src="{{ url_for('video_feed') }}" style="width: 100%; max-width: 100%; height: auto; border-radius: 8px; display: block;">
                     <div class="scan-line-vertical"></div>
                 </div>
                 

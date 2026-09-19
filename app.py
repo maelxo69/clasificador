@@ -2,13 +2,14 @@ from flask import Flask, Response, render_template, request, redirect, url_for, 
 from flask_sqlalchemy import SQLAlchemy
 from ultralytics import YOLO
 import cv2
+import time
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 app.secret_key = 'clave_secreta_maqueta_utsui'
 
 # Carga de modelo
-ruta_modelo = 'clasificador/runs/detect/train_definitivo/weights/best.pt'  # Asegúrate de que esta ruta sea correcta
+ruta_modelo = 'runs/detect/train_definitivo/weights/best.pt'  # Asegúrate de que esta ruta sea correcta
 model = YOLO(ruta_modelo)
 print("Clases reconocidas por el modelo:", model.names)
 
@@ -116,9 +117,8 @@ def ecodiseno():
 # ================= CÁMARA E IA =================
 
 def generar_frames():
-    URL_CAMARA = 'http://192.168.11.191:4747/video' # Cambia esto a 127.0.0.1 si ya conectaste el USB
+    URL_CAMARA = 'http://192.168.1.85:4747/video' 
     
-    # Diccionario de colores (formato BGR de OpenCV)
     colores = {
         'HDPE': (255, 0, 0),    # Azul
         'LDPE': (0, 255, 0),    # Verde
@@ -128,19 +128,19 @@ def generar_frames():
     
     while True:
         cap = cv2.VideoCapture(URL_CAMARA)
+        # Reducir el buffer interno de OpenCV ayuda más al delay que descartar frames manualmente
+        cap.set(cv2.CAP_PROP_BUFFERSIZE, 1) 
         
         while cap.isOpened():
-            for _ in range(2):
-                cap.grab()
-                
             success, frame = cap.read()
             if not success:
                 break
             else:
-                frame = cv2.resize(frame, (640, 480))
+                # Eliminamos el cv2.resize manual. 
+                # YOLO adaptará la imagen a imgsz=640 internamente pero conservando la proporción correcta.
                 
-                # Subimos la confianza a 0.50 para que deje de adivinar "LDPE" a lo loco
-                resultados = model(frame, conf=0.50, iou=0.30, imgsz=640)
+                # Subimos un poco la confianza inicial para evitar parpadeos con sombras
+                resultados = model(frame, conf=0.60, iou=0.45, imgsz=640)
                 
                 for r in resultados:
                     for box in r.boxes:
@@ -148,26 +148,21 @@ def generar_frames():
                         nombre_detectado = model.names[cls_id]
                         confianza = float(box.conf[0].item()) * 100
                         
-                        print(f"Objeto: {nombre_detectado} | Confianza: {confianza:.1f}%")
-                        
                         x1, y1, x2, y2 = map(int, box.xyxy[0])
-                        
-                        # Elegir el color según el material (si no está, usa blanco)
                         color_caja = colores.get(nombre_detectado, (255, 255, 255))
                         
-                        # Dibujar rectángulo y texto con el color correspondiente
                         cv2.rectangle(frame, (x1, y1), (x2, y2), color_caja, 2)
                         texto = f"{nombre_detectado} {confianza:.1f}%"
                         cv2.putText(frame, texto, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, color_caja, 2)
 
-                ret, buffer = cv2.imencode('.jpg', frame)
-                frame_final = buffer.tobytes()
+            ret, buffer = cv2.imencode('.jpg', frame)
+            frame_final = buffer.tobytes()
 
-                yield (b'--frame\r\n'
-                       b'Content-Type: image/jpeg\r\n\r\n' + frame_final + b'\r\n')
+            yield (b'--frame\r\n'
+                   b'Content-Type: image/jpeg\r\n\r\n' + frame_final + b'\r\n')
         
         cap.release()
-        cv2.waitKey(1000)
+        time.sleep(1) # Reemplazo seguro de waitKey para servidores web
 @app.route('/video_feed')
 def video_feed():
     # Retorna el streaming de video con el tipo de contenido adecuado para navegadores

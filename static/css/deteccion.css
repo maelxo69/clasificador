@@ -16,19 +16,14 @@
 }
 
 /* Remate de franja tejida, igual que en el resto del sitio */
+/* Remate de franja tejida, igual que en el resto del sitio */
 .dashboard-header::before {
-
     content: "";
-
     position: absolute;
-
     top: 0;
     left: 0;
-
     width: 64px;
     height: 5px;
-
-    background: var(--franja);
 
     border-radius: 3px;
 }

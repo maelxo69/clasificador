@@ -1588,7 +1588,7 @@ footer p,
         text-align: center;
         padding: 15px;
         gap: 10px;
-        position: relative; /* ¡VITAL! Permite que el absolute de abajo funcione */
+        position: relative; 
     }
 
     .navbar nav {
@@ -1613,7 +1613,7 @@ footer p,
     }
 
     .navbar-right .status {
-        display: none; /* Oculta el estado "En línea" para no saturar el móvil */
+        display: none; 
     }
 
 
