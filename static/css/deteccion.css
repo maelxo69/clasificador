@@ -15,8 +15,6 @@
     padding-top: 20px;
 }
 
-/* Remate de franja tejida, igual que en el resto del sitio */
-/* Remate de franja tejida, igual que en el resto del sitio */
 .dashboard-header::before {
     content: "";
     position: absolute;

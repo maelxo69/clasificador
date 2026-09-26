@@ -3,12 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>de ÜTSÜIN MMA | Panel de Detección</title>
+    <title>SÜTSÜIN-IKÜLAA | Panel de Detección</title>
     
     <!-- CSS GENERAL -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <!-- CSS ESPECÍFICO DE DETECCIÓN -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/deteccion.css') }}"}}?v=2">>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/deteccion.css') }}">
+    <!-- Carga del archivo JavaScript al final del body -->
+    <script src="{{ url_for('static', filename='js.js') }}?v=1"></script>
+</body>
+</html>
 </head>
 <body>
 
@@ -19,7 +23,7 @@
                 <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo ÜTSÜIN MMA">
             </div>
             <div>
-                <span class="logo-name">de ÜTSÜIN MMA</span>
+                <span class="logo-name">SÜTSÜIN-IKÜLAA</span>
                 <small>Clasificación inteligente</small>
             </div>
         </div>
