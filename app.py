@@ -2,6 +2,8 @@ from flask import Flask, Response, render_template, request, redirect, url_for, 
 from flask_sqlalchemy import SQLAlchemy
 from ultralytics import YOLO
 import cv2
+import requests
+import numpy as np
 import time
 import serial
 import threading
@@ -148,8 +150,7 @@ def ecodiseno():
 def generar_frames():
     global ultima_deteccion, banda_activa
     
-    # URL del stream de video de la ESP32-CAM (Reemplaza con la IP que mostró el Monitor Serie)
-    URL_CAMARA = 'http://192.168.1.87:81/stream'
+    URL_CAMARA = 'http://192.168.11.243:81/stream'
     
     colores = {
         'HDPE': (255, 0, 0),    # Azul
@@ -158,63 +159,81 @@ def generar_frames():
         'PVC':  (0, 255, 255)   # Amarillo
     }
     
-    ultimo_impreso = None  # Filtro para evitar spam en terminal
-    
-    while True:
-        cap = cv2.VideoCapture(URL_CAMARA)
-        cap.set(cv2.CAP_PROP_BUFFERSIZE, 1)
-        
-        while cap.isOpened():
-            success, frame = cap.read()
-            if not success:
-                break
-            else:
-                resultados = model(frame, conf=0.50, iou=0.45, imgsz=640, verbose=False)
-                hay_deteccion = False
-                
-                for r in resultados:
-                    for box in r.boxes:
-                        hay_deteccion = True
-                        cls_id = int(box.cls[0].item())
-                        nombre_detectado = model.names[cls_id]
-                        confianza = float(box.conf[0].item()) * 100
-                        
-                        # Actualización para la API web
-                        ultima_deteccion = {
-                            "material": nombre_detectado,
-                            "confianza": confianza
-                        }
-                        
-                        # Al detectar un objeto nuevo
-                        if nombre_detectado != ultimo_impreso:
-                            print(f"--> [NUEVA DETECCIÓN] Material: {nombre_detectado} | Confianza: {confianza:.1f}%")
-                            ultimo_impreso = nombre_detectado
-                            
-                            # Si la banda está en movimiento, disparamos el temporizador del impulsador
-                            if banda_activa:
-                                thread_impulsador = threading.Thread(
-                                    target=activar_impulsador_async, 
-                                    args=(nombre_detectado,)
-                                )
-                                thread_impulsador.start()
-                        
-                        x1, y1, x2, y2 = map(int, box.xyxy[0])
-                        color_caja = colores.get(nombre_detectado, (255, 255, 255))
-                        
-                        cv2.rectangle(frame, (x1, y1), (x2, y2), color_caja, 2)
-                        texto = f"{nombre_detectado} {confianza:.1f}%"
-                        cv2.putText(frame, texto, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, color_caja, 2)
-                
-                if not hay_deteccion:
-                    ultimo_impreso = None
+    ultimo_impreso = None  
+    contador_frames = 0    
+    resultados_ultimos = [] 
 
-            frame_salida = cv2.resize(frame, (640, 480))
-            ret, buffer = cv2.imencode('.jpg', frame_salida)
-            yield (b'--frame\r\n'
-                   b'Content-Type: image/jpeg\r\n\r\n' + buffer.tobytes() + b'\r\n')
-        
-        cap.release()
-        time.sleep(1)
+    while True:
+        try:
+            stream = requests.get(URL_CAMARA, stream=True, timeout=5)
+            if stream.status_code != 200:
+                time.sleep(1)
+                continue
+
+            bytes_chunk = b''
+            for chunk in stream.iter_content(chunk_size=1024):
+                bytes_chunk += chunk
+                a = bytes_chunk.find(b'\xff\xd8') # Inicio del JPEG
+                b = bytes_chunk.find(b'\xff\xd9') # Fin del JPEG
+                
+                if a != -1 and b != -1:
+                    jpg = bytes_chunk[a:b+2]
+                    bytes_chunk = bytes_chunk[b+2:]
+                    
+                    # Decodificación corregida con numpy
+                    frame = cv2.imdecode(np.frombuffer(jpg, dtype=np.uint8), cv2.IMREAD_COLOR)
+                    
+                    if frame is None:
+                        continue
+
+                    contador_frames += 1
+                    hay_deteccion = False
+                    
+                    # Salto de fotogramas para aligerar la IA (procesa 1 de cada 3 frames)
+                    if contador_frames % 3 == 0:
+                        resultados_ultimos = model(frame, conf=0.50, iou=0.45, imgsz=416, verbose=False)
+                    
+                    for r in resultados_ultimos:
+                        for box in r.boxes:
+                            hay_deteccion = True
+                            cls_id = int(box.cls[0].item())
+                            nombre_detectado = model.names[cls_id]
+                            confianza = float(box.conf[0].item()) * 100
+                            
+                            ultima_deteccion = {
+                                "material": nombre_detectado,
+                                "confianza": confianza
+                            }
+                            
+                            if nombre_detectado != ultimo_impreso:
+                                print(f"--> [NUEVA DETECCIÓN] Material: {nombre_detectado} | Confianza: {confianza:.1f}%")
+                                ultimo_impreso = nombre_detectado
+                                
+                                if banda_activa:
+                                    thread_impulsador = threading.Thread(
+                                        target=activar_impulsador_async, 
+                                        args=(nombre_detectado,)
+                                    )
+                                    thread_impulsador.start()
+                            
+                            x1, y1, x2, y2 = map(int, box.xyxy[0])
+                            color_caja = colores.get(nombre_detectado, (255, 255, 255))
+                            
+                            cv2.rectangle(frame, (x1, y1), (x2, y2), color_caja, 2)
+                            texto = f"{nombre_detectado} {confianza:.1f}%"
+                            cv2.putText(frame, texto, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, color_caja, 2)
+                    
+                    if not hay_deteccion:
+                        ultimo_impreso = None
+
+                    frame_salida = cv2.resize(frame, (640, 480))
+                    ret, buffer = cv2.imencode('.jpg', frame_salida, [cv2.IMWRITE_JPEG_QUALITY, 80])
+                    yield (b'--frame\r\n'
+                           b'Content-Type: image/jpeg\r\n\r\n' + buffer.tobytes() + b'\r\n')
+                           
+        except Exception as e:
+            print(f"--> [WARNING] Desconexión temporal de la cámara: {e}")
+            time.sleep(1)
 
 @app.route('/video_feed')
 def video_feed():
