@@ -4,13 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SÜTSÜIN-IKÜLAA | Ecodiseño</title>
-    
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <!-- CSS GENERAL (una sola vez; sube el número de ?v= cada vez que cambies style.css) -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=9">
+    <script src="{{ url_for('static', filename='js/menu.js') }}"></script>
 </head>
 <body>
-
-    <!-- CSS GENERAL -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=4">
 
     <!-- ================= NAVBAR ================= -->
     <header class="navbar">
@@ -29,6 +28,7 @@
             <a href="/materiales">Materiales</a>
             <a href="/deteccion">Detección IA</a>
             <a href="/ecodiseno" class="active">Ecodiseño</a>
+            <a href="/dashboard">Dashboard</a>
         </nav>
 
         <div class="navbar-right">
@@ -66,9 +66,10 @@
         <section class="dashboard-header">
             <span class="eyebrow">LABORATORIO CREATIVO</span>
             <h1>Ecodiseño Circular</h1>
-            <p>Selecciona un material y un proceso para descubrir nuevas vidas para los residuos.</p
+            <p>Selecciona un material y un proceso para descubrir nuevas vidas para los residuos.</p>
         </section>
 
+        <!-- ============ ECODISEÑO ORIGINAL ============ -->
         <div class="eco-grid">
             <aside class="selection-panel">
                 <div class="form-group">
@@ -101,9 +102,66 @@
                 </div>
             </article>
         </div>
+
+        <!-- ============ NUEVO: LÁMINAS DE PRENSADO WAYUU / AFRO ============ -->
+        <h2 class="eco-subtitle">Prensado con identidad Wayuu y Afrocolombiana</h2>
+
+        <div class="eco-grid" id="prensado">
+            <aside class="selection-panel">
+                <div class="form-group">
+                    <label for="pr-material">MATERIAL A PRENSAR</label>
+                    <select id="pr-material">
+                        <option value="HDPE">HDPE</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="pr-tema">TEMÁTICA</label>
+                    <select id="pr-tema">
+                        <option value="todas">Wayuu y Afrocolombiano</option>
+                    </select>
+                </div>
+                <button class="btn-primary" id="pr-generar" style="width: 100%; justify-content: center; border: 0; cursor: pointer;">Generar Diseños</button>
+            </aside>
+
+            <article class="suggestion-card">
+                <div id="pr-resultados">
+                    <p class="pr-vacio">Elige un material y pulsa «Generar Diseños».</p>
+                </div>
+                <div class="pr-acciones">
+                    <button class="btn-primary pr-oculto" id="pr-imprimir" style="border: 0; cursor: pointer;">Imprimir diseño</button>
+                </div>
+            </article>
+        </div>
     </main>
 
+    <!-- SIMULACIÓN DE IMPRESIÓN (no se conecta a nada) -->
+    <div class="print-overlay" id="pr-overlay">
+        <div class="print-box">
+            <div class="press">
+                <div class="press-plate top"></div>
+                <div class="press-material"></div>
+                <div class="press-plate bottom"></div>
+            </div>
+            <h3 id="pr-titulo-print">Imprimiendo…</h3>
+            <div class="print-bar"><i id="pr-barra"></i></div>
+            <div class="print-step" id="pr-paso">Preparando</div>
+        </div>
+    </div>
+
+    <!-- VISTA AMPLIADA DEL DISEÑO -->
+    <div class="zoom-overlay" id="pr-zoom" role="dialog" aria-modal="true" aria-label="Vista ampliada del diseño">
+        <div class="zoom-box">
+            <button type="button" class="zoom-cerrar" id="pr-zoom-cerrar" aria-label="Cerrar">✕</button>
+            <img id="pr-zoom-img" src="" alt="">
+            <div class="zoom-pie">
+                <strong id="pr-zoom-titulo"></strong>
+                <button type="button" class="btn-primary" id="pr-zoom-elegir" style="border: 0; cursor: pointer;">Elegir este diseño</button>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // ================= ECODISEÑO ORIGINAL =================
         const baseDeIdeas = {
             "PET": {
                 "triturado": [
@@ -154,9 +212,9 @@
             const mat = document.getElementById('select-material').value;
             const proc = document.getElementById('select-proceso').value;
             const container = document.getElementById('ideas-container');
-            
+
             const ideas = baseDeIdeas[mat][proc] || [];
-            
+
             if (ideas.length === 0) {
                 container.innerHTML = `<p>No hay ideas registradas para esta combinación aún.</p>`;
                 return;
@@ -183,7 +241,7 @@
             };
 
             let html = `<h2 style="color: var(--verde); margin-bottom: 25px;">Ideas para ${mat} <small style="color:#666">(${proc})</small></h2>`;
-            
+
             ideas.forEach((idea, index) => {
                 const folderName = `${mat.toLowerCase()}_${proc.toLowerCase()}`;
                 const fileName = fileMapping[mat][proc][index] || "default.jpg";
@@ -203,6 +261,140 @@
             });
             container.innerHTML = html;
         }
+        // ================= NUEVO: LÁMINAS DE PRENSADO (SOLO HDPE) =================
+        (() => {
+            const BASE = "{{ url_for('static', filename='img/') }}";
+            // ==================================================================
+            const d = (titulo, archivo) => ({ titulo, img: BASE + archivo });
+            const DISENOS = {
+                HDPE: {
+                    wayuu: [
+                        d('Diseño Wayuu 1', 'wayuu-1.png'),
+                        d('Diseño Wayuu 2', 'wayuu-2.png'),
+                        d('Diseño Wayuu 3', 'wayuu-3.png'),
+                        d('Diseño Wayuu 4', 'wayuu-4.png'),
+                        d('Diseño Wayuu 5', 'wayuu-5.png'),
+                        d('Diseño Wayuu 6', 'wayuu-6.png')
+                    ],
+                    afro: [
+                        d('Laminado silla afro 1', 'afro-1.png'),
+                        d('Diseño afro 2', 'afro-2.png'),
+                        d('Diseño afro 3', 'afro-3.png'),
+                        d('Diseño afro 4', 'afro-4.png'),
+                        d('Señalización afro 1', 'afro-5.png'),
+                        d('Diseño afro 6', 'afro-6.png')
+                    ]
+                }
+            };
+            // ==================================================================
+
+            const NOMBRE_TEMA = { wayuu: 'Wayuu', afro: 'Afrocolombiano' };
+            const $ = id => document.getElementById(id);
+            const resultados = $('pr-resultados'), btnImprimir = $('pr-imprimir');
+            let elegido = null;
+
+            // Comprueba si la imagen existe antes de mostrar la tarjeta
+            const existe = x => new Promise(ok => {
+                const im = new Image();
+                im.onload = () => ok(true);
+                im.onerror = () => ok(false);
+                im.src = x.img;
+            });
+
+            // ===== VISTA AMPLIADA =====
+            const zoom = $('pr-zoom'), zoomImg = $('pr-zoom-img'), zoomTitulo = $('pr-zoom-titulo'), zoomElegir = $('pr-zoom-elegir');
+            let alElegir = null;
+
+            const abrirZoom = (x, elegirFn) => {
+                zoomImg.src = x.img;
+                zoomImg.alt = x.titulo;
+                zoomTitulo.textContent = x.titulo;
+                alElegir = elegirFn;
+                zoom.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            };
+            const cerrarZoom = () => {
+                zoom.classList.remove('show');
+                document.body.style.overflow = '';
+            };
+
+            zoomElegir.addEventListener('click', () => { if (alElegir) alElegir(); cerrarZoom(); });
+            $('pr-zoom-cerrar').addEventListener('click', cerrarZoom);
+            zoom.addEventListener('click', e => { if (e.target === zoom) cerrarZoom(); });   // clic en el fondo
+            document.addEventListener('keydown', e => { if (e.key === 'Escape') cerrarZoom(); });
+
+            $('pr-generar').addEventListener('click', () => {
+                const material = $('pr-material').value, tema = $('pr-tema').value;
+                elegido = null;
+                btnImprimir.classList.add('pr-oculto');
+                resultados.innerHTML = '<p class="pr-cargando">Generando diseños con IA…</p>';
+
+                setTimeout(async () => {
+                    const temas = tema === 'todas' ? ['wayuu', 'afro'] : [tema];
+                    const candidatos = temas.flatMap(t => ((DISENOS[material] || {})[t] || []).map(x => ({ ...x, tema: t })));
+
+                    // Solo se muestran los diseños cuya imagen realmente existe
+                    const hay = await Promise.all(candidatos.map(existe));
+                    const lista = candidatos.filter((_, i) => hay[i]);
+
+                    if (!lista.length) {
+                        resultados.innerHTML = '<p class="pr-vacio">Aún no hay diseños cargados para este material.</p>';
+                        return;
+                    }
+
+                    resultados.innerHTML = lista.map((x, i) => `
+                        <div class="idea-item selectable" data-i="${i}" tabindex="0" role="button">
+                            <div class="idea-content">
+                                <h3>${x.titulo} <span class="tag-process">Prensado</span></h3>
+                                <p style="color: #666; line-height: 1.6;">Diseño para prensar ${material}, inspirado en la cultura ${NOMBRE_TEMA[x.tema]}.</p>
+                            </div>
+                            <div class="idea-image">
+                                <img src="${x.img}" alt="${x.titulo}">
+                            </div>
+                        </div>`).join('');
+
+                    resultados.querySelectorAll('.idea-item').forEach(el => {
+                        const elegir = () => {
+                            resultados.querySelectorAll('.idea-item').forEach(o => o.classList.remove('selected'));
+                            el.classList.add('selected');
+                            elegido = lista[el.dataset.i];
+                            btnImprimir.classList.remove('pr-oculto');
+                        };
+                        el.addEventListener('click', elegir);
+                        el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); elegir(); } });
+
+                        // Clic en la foto: abrir en grande (sin seleccionar la tarjeta)
+                        const miniatura = el.querySelector('.idea-image img');
+                        if (miniatura) miniatura.addEventListener('click', e => {
+                            e.stopPropagation();
+                            abrirZoom(lista[el.dataset.i], elegir);
+                        });
+                    });
+                }, 900);
+            });
+
+            // ===== SIMULACIÓN DE IMPRESIÓN (no hace nada real) =====
+            const PASOS = ['Calentando la plancha…', 'Prensando el material…', 'Enfriando la pieza…'];
+            btnImprimir.addEventListener('click', () => {
+                if (!elegido) return;
+                const overlay = $('pr-overlay'), barra = $('pr-barra'), paso = $('pr-paso'), titulo = $('pr-titulo-print');
+                titulo.textContent = 'Imprimiendo «' + elegido.titulo + '»';
+                barra.style.width = '0%';
+                overlay.classList.add('show');
+                let p = 0;
+                const t = setInterval(() => {
+                    p += 2;
+                    barra.style.width = p + '%';
+                    paso.textContent = PASOS[Math.min(Math.floor(p / 34), 2)];
+                    if (p >= 100) {
+                        clearInterval(t);
+                        titulo.textContent = '¡Pieza lista!';
+                        paso.textContent = 'Impresión simulada completada';
+                        setTimeout(() => overlay.classList.remove('show'), 1500);
+                    }
+                }, 100);
+            });
+        })();
     </script>
 </body>
 </html>

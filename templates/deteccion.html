@@ -10,7 +10,8 @@
     <!-- CSS ESPECÍFICO DE DETECCIÓN -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/deteccion.css') }}">
     <!-- Carga del archivo JavaScript al final del body -->
-    <script src="{{ url_for('static', filename='js.js') }}?v=1"></script>
+    <script src="{{ url_for('static', filename='js/detect.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/menu.js') }}"></script>
 </body>
 </html>
 </head>
@@ -33,6 +34,7 @@
             <a href="/materiales">Materiales</a>
             <a href="/deteccion" class="active">Detección IA</a>
             <a href="/ecodiseno">Ecodiseño</a>
+            <a href="/dashboard">Dashboard</a>
         </nav>
 
         <div class="navbar-right">
