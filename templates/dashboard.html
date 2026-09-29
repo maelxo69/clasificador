@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SÜTSÜIN-IKÜLAA | Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=5">
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/menu.js') }}"></script>
+</head>
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+    <header class="navbar">
+        <div class="logo">
+            <div class="logo-symbol">
+                <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo ÜTSÜIN MMA">
+            </div>
+            <div>
+                <span class="logo-name">SÜTSÜIN-IKÜLAA</span>
+                <small>Clasificación inteligente</small>
+            </div>
+        </div>
+
+        <nav>
+            <a href="/">Inicio</a>
+            <a href="/materiales">Materiales</a>
+            <a href="/deteccion">Detección IA</a>
+            <a href="/dashboard" class="active">Dashboard</a>
+            <a href="/ecodiseno">Ecodiseño</a>
+        </nav>
+
+        <div class="navbar-right">
+            <div class="status">
+                <span class="status-dot blink"></span>
+                <span class="status-text">En línea</span>
+            </div>
+
+            <div class="user-dropdown">
+                <div class="user-trigger">
+                    <div class="user-avatar">{{ nombre_usuario[0] | upper }}</div>
+                    <span class="user-name">{{ nombre_usuario }}</span>
+                    <span class="chevron">▼</span>
+                </div>
+
+                <div class="dropdown-menu">
+                    <div class="dropdown-header">
+                        <strong>{{ nombre_usuario }}</strong>
+                        <small>Sistema activo</small>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <a href="/configuracion" class="dropdown-item">Configuración</a>
+                    <a href="/logout" class="dropdown-item logout-btn">
+                        <span>Cerrar sesión</span>
+                        <span class="logout-icon">→</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="pattern-top"></div>
+
+    <!-- ================= DASHBOARD ================= -->
+    <main class="eco-container">
+        <section class="dashboard-header">
+            <span class="eyebrow">ESTADÍSTICAS DE LA BANDA</span>
+            <h1>Dashboard de Clasificación</h1>
+            <p>Objetos que han pasado por la banda, contados por material en tiempo real.</p>
+        </section>
+
+        <div class="dash-tools">
+            <button class="btn-secondary" id="btn-reiniciar" style="cursor: pointer;">Reiniciar conteo</button>
+        </div>
+
+        <div class="kpi-grid">
+            <div class="kpi"><span>Objetos totales</span><strong id="kpi-total">0</strong></div>
+            <div class="kpi"><span>Último minuto</span><strong id="kpi-minuto">0</strong></div>
+            <div class="kpi"><span>Material más frecuente</span><strong id="kpi-top">--</strong></div>
+            <div class="kpi"><span>Confianza promedio</span><strong id="kpi-conf">0%</strong></div>
+        </div>
+
+        <div class="charts-main">
+            <div class="chart-card">
+                <h3>Distribución por material</h3>
+                <div class="chart-box"><canvas id="chart-general"></canvas></div>
+            </div>
+            <div class="chart-card">
+                <h3>Flujo de la banda (últimos 10 min)</h3>
+                <div class="chart-box"><canvas id="chart-tiempo"></canvas></div>
+            </div>
+        </div>
+
+        <div class="charts-mini">
+            <div class="chart-card"><h3>HDPE <strong id="tot-HDPE">0</strong></h3><div class="chart-box"><canvas id="chart-HDPE"></canvas></div></div>
+            <div class="chart-card"><h3>LDPE <strong id="tot-LDPE">0</strong></h3><div class="chart-box"><canvas id="chart-LDPE"></canvas></div></div>
+            <div class="chart-card"><h3>PET <strong id="tot-PET">0</strong></h3><div class="chart-box"><canvas id="chart-PET"></canvas></div></div>
+            <div class="chart-card"><h3>PVC <strong id="tot-PVC">0</strong></h3><div class="chart-box"><canvas id="chart-PVC"></canvas></div></div>
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+    <script src="{{ url_for('static', filename='dashboard.js') }}"></script>
+</body>
+</html>
