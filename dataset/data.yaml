@@ -7,7 +7,7 @@ names: ['HDPE', 'LDPE', 'PET', 'PVC']
 
 roboflow:
   workspace: samer-andres-suarez-brito
-  project: proyecto-v2
-  version: 1
+  project: refuerzo-v3
+  version: 3
   license: CC BY 4.0
-  url: https://universe.roboflow.com/samer-andres-suarez-brito/proyecto-v2/dataset/1
+  url: https://universe.roboflow.com/samer-andres-suarez-brito/refuerzo-v3/dataset/3
